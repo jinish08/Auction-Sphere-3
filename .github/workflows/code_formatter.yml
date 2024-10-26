@@ -1,4 +1,4 @@
-name: Format
+name: Javascript Format Checker
 on: [push, pull_request]
 
 jobs:

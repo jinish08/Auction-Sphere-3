@@ -1,20 +1,21 @@
-[![GitHub](https://img.shields.io/github/license/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/blob/main/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/issues)
-[![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/issues?q=is%3Aissue+is%3Aclosed)
-![GitHub forks](https://img.shields.io/github/forks/kartikson1/Auction-Sphere?style=social)
+<h1>Auction Sphere </h1>
+
+[![GitHub](https://img.shields.io/github/license/LavanyaMiddha/Auction-Sphere-2)](https://github.com/kartikson1/Auction-Sphere/blob/main/LICENSE)
+
+[![Build](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/code_cov.yml/badge.svg)](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/code_cov.yml) [![CI/CD](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/react_workflow.yml/badge.svg)](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/react_workflow.yml)  [![Javascript Format Checker](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/code_formatter.yml/badge.svg)](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/code_formatter.yml) [![Python Style Checker](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/style_checker.yml/badge.svg)](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/style_checker.yml) [![codecov](https://codecov.io/gh/LavanyaMiddha/Auction-Sphere-2/graph/badge.svg?token=T9WGZA1ZR5)](https://codecov.io/gh/SLavanyaMiddha/Auction-Sphere-2)
+
+[![GitHub contributors](https://img.shields.io/github/contributors/LavanyaMiddha/Auction-Sphere-2)](https://github.com/LavanyaMiddha/Auction-Sphere-2/graphs/contributors)  [![GitHub last commit](https://img.shields.io/github/last-commit/LavanyaMiddha/Auction-Sphere-2)](https://github.com/LavanyaMiddha/Auction-Sphere-2/commits/main)   [![GitHub issues](https://img.shields.io/github/issues/LavanyaMiddha/Auction-Sphere-2)](https://github.com/LavanyaMiddha/Auction-Sphere-2/issues) [![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/LavanyaMiddha/Auction-Sphere-2)](https://github.com/LavanyaMiddha/Auction-Sphere-2/issues?q=is%3Aissue+is%3Aclosed)  ![GitHub forks](https://img.shields.io/github/forks/LavanyaMiddha/Auction-Sphere-2?style=social)
+
+![GitHub language count](https://img.shields.io/github/languages/count/LavanyaMiddha/Auction-Sphere-2)
+
+![GitHub top language](https://img.shields.io/github/languages/top/LavanyaMiddha/Auction-Sphere-2)
+
 [![DOI](https://zenodo.org/badge/545100230.svg)](https://zenodo.org/badge/latestdoi/545100230)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kartikson1/Auction-Sphere/Running%20Code%20Coverage)](https://github.com/kartikson1/Auction-Sphere/actions)
-[![GitHub contributors](https://img.shields.io/github/contributors/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/graphs/contributors)
-[![GitHub last commit](https://img.shields.io/github/last-commit/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/commits/main)
-![GitHub language count](https://img.shields.io/github/languages/count/kartikson1/Auction-Sphere)
-![GitHub top language](https://img.shields.io/github/languages/top/kartikson1/Auction-Sphere)
-
-[![codecov](https://codecov.io/github/kartikson1/Auction-Sphere/branch/main/graph/badge.svg?token=eucr4X9Mtx)](https://codecov.io/github/kartikson1/Auction-Sphere)
 
 
-# Auction-Sphere
 
-Repository for CSC 510 Software Engineering project 1, created by Group 3: Shreya Maheshwari, Nandini Mundra, Palash Rathod, Tanvi Sinha, and Kartik Soni
+
+Repository for CSC 510 Software Engineering project 2, created by Group : Lavanya Middha, Nayan Taori, Prathamesh Thakur
 
 Click on the image below to view the demo video of the project
 
@@ -87,13 +88,9 @@ We have a lot planned for the future! Completed tasks and future enhancements ca
 
 ## Group-3
 
-[Nandini Mundra](https://github.com/nandinimundra00)
+[Lavanya Middha](https://github.com/LavanyaMiddha)
 
-[Palash Rathod](https://github.com/palash27)
+[Nayan Taori](https://github.com/NDT2000)
 
-[Shreya Maheshwari](https://github.com/ShreyaMaheshwari)
+[Prathamesh Thakur](https://github.com/Prathamesh-Thakur)
 
-[Tanvi Sinha](https://github.com/tanvi9sinha)
-
-[Kartik Soni](https://github.com/kartikson1)
-# Auction-Sphere-2
