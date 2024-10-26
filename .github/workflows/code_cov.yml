@@ -30,6 +30,6 @@
            cd backend
             coverage run -m pytest test.py
      - name: Upload coverage to Codecov
-       uses: codecov/test-results-action@v4
+       uses: codecov/codecov-action@v4
        with:
         token: ${{ secrets.CODECOV_TOKEN }}
