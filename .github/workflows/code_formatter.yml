@@ -1,4 +1,4 @@
-name: Format
+name: Javascript Format Check
 on: [push, pull_request]
 
 jobs:
