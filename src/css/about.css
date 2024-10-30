@@ -27,21 +27,30 @@
 .buyer{
     position: absolute;
     left: 10px;
-    top: 300px;
+    top: 500px;
     color: black;
-    text-align: center;
-    width: 300;
+    width: 400px;
+    padding: 10;
+    margin: 10;
     box-shadow: inset;
     background-color: green;
 }
 
 .seller{
     position: absolute;
-    left: 300px;
-    top: 300px;
+    left: 450px;
+    top: 500px;
     color: black;
-    text-align: center;
-    width: 300;
+    width: 400px;
     box-shadow: inset;
     background-color: green;
+}
+
+.about-us{
+    position: absolute;
+    width: 99%;
+    padding: 20px;
+    top: 175px;
+    background-color: yellow;
+    color: black;
 }

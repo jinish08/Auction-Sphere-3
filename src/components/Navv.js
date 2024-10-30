@@ -34,7 +34,7 @@ function Navv(args) {
         <div>
             <Navbar
                 style={{ marginBottom: '1rem' }}
-                color="light"
+                color="dark"
                 light
                 expand="md"
             >
@@ -56,15 +56,15 @@ function Navv(args) {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="justify-content-end" navbar>
                         <NavItem>
-                            <NavLink href="/products">Products</NavLink>
+                            <NavLink href="/products" style={{color:'white'}}>Products</NavLink>
                         </NavItem>
                         {localStorage.getItem('auth') === 'true' ? (
                             <>
                                 <NavItem>
-                                    <NavLink href="/sell">Sell</NavLink>
+                                    <NavLink href="/sell" style={{color:'white'}}>Sell</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="/" onClick={handleLogout}>
+                                    <NavLink style={{color:'white'}} href="/" onClick={handleLogout}>
                                         Logout
                                     </NavLink>
                                 </NavItem>
@@ -72,10 +72,10 @@ function Navv(args) {
                         ) : (
                             <>
                                 <NavItem className="float-right">
-                                    <NavLink href="/login">Login</NavLink>
+                                    <NavLink href="/login" style={{color:'white'}}>Login</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="/signup">Signup</NavLink>
+                                    <NavLink href="/signup" style={{color:'white'}}>Signup</NavLink>
                                 </NavItem>
                             </>
                         )}
