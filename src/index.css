@@ -13,19 +13,19 @@ code {
 } */
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  margin-left: 0.5rem;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    margin-left: 0.5rem;
+    padding: 0;
 }
 
 .footer {
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  color:black;
-  /* background: #1E0252; */
-  margin-top: auto;
-  margin-bottom: '3rem';
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: black;
+    /* background: #1E0252; */
+    margin-top: auto;
+    margin-bottom: '3rem';
 }
