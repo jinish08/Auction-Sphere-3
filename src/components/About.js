@@ -3,7 +3,15 @@ import Navv from './Navv'
 import logo from '../assets/Logo.png'
 import '../css/about.css'
 import myGif from '../assets/auction.gif';
-import ProductView from './ProductView';
+import cabinet from '../assets/cabinet.jpg';
+import couch from '../assets/couch.jpeg';
+import hairdryer from '../assets/Hair_dryer.jpeg';
+import lamp from '../assets/lamp.jpg';
+import painting from '../assets/Starry-Night.webp';
+import treadmill from '../assets/treadmill.webp';
+import sunglass from '../assets/sungalss.jpeg';
+import ProductView from './ProductView'
+import '../css/gallery.css'
 /**
  * This component displays information about our project.
  */
@@ -11,20 +19,9 @@ import ProductView from './ProductView';
 const About = () => {
     return (
         <>
+        <body style={{background: "linear-gradient(30deg, #020024, #090979,#94bbe9)", backgroundAttachment:'scroll', position:'absolute', top:0, left:0, right:0, bottom:0}}>
             <Navv/>
-            <div
-                style={{
-                    textAlign: 'center',
-                    background:
-                        'linear-gradient(30deg, #020024, #090979,#94bbe9)',
-                    color: 'white',
-                    position: 'fixed',
-                    bottom: 0,
-                    top: 60,
-                    left: 0,
-                    right: 0,
-                }}
-            >
+            <div style={{textAlign:'center', color: 'white', margin: '4rem'}}>
                 <h1 style={{ padding: 10 }}>Welcome to Auction-Sphere!</h1>
 
                 <p>
@@ -32,7 +29,19 @@ const About = () => {
                     <br></br>
                     Bid for exciting items and grab your favourite!
                 </p>
-                <div className="about-us" style={{textAlign:"left"}}> <h3>About Us</h3>
+            </div>
+                <div class="scroll-container" style={{position:'absolute', left: 5, top: '13rem'}}>
+                    <a href="/Products">
+                    <img src={couch} alt="Cinque Terre" width="250" height="250"></img>
+                    <img src={hairdryer} alt="Forest" width="250" height="250"></img>
+                    <img src={painting} alt="Northern Lights" width="250" height="250"></img>
+                    <img src={sunglass} alt="Mountains" width="250" height="250"></img>
+                    <img src={cabinet} alt="Mountains" width="250" height="250"></img>
+                    <img src={lamp} alt="Mountains" width="250" height="250"></img>
+                    <img src={treadmill} alt="Mountains" width="250" height="250"></img>
+                    </a>
+                </div>
+                <div className="about-us" style={{textAlign:"left", top: 500, width: 1150, left: 10, opacity:0.8}}> <h3>About Us</h3>
                 <p>
                     Auction Sphere is an auctioning system where people can bid
                     on exciting items and also put items up for sale. Every item
@@ -47,17 +56,12 @@ const About = () => {
                         <li>Place bids on products to grab your favourites!</li>
                         <li>track the progress of items in your Personalized dashboard</li>
                     </ol>
-                To learn about the exiting products on our webiste, please check out our<a href="/products" style={{color:'black'}}><b>Products!</b></a>
+                To learn about the exiting products on our webiste, please check out our<a href="/products" style={{color:'white'}}><b>Products!</b></a>
                 </p>
                 </div>
-                <div style={{position: 'absolute', right:5, top:300}}>
-            <img src={myGif} alt="A cool GIF" style={{ height: 200, width: 350 }}/>
-        </div>
-                <img src={logo} style={{ height: 175, width: 300, position: 'absolute', right:5, bottom:5}} />
-            </div>
-            <div style={{position:'absolute', top: 800}}>
-                <ProductView></ProductView>
-                </div>
+                <img src={logo} style={{ height: 175, width: 300, position: 'absolute', right:7, bottom:7}} />
+
+            </body>
         </>
     )
 }

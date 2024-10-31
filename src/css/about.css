@@ -51,9 +51,8 @@
     padding: 20px;
     left: 5px;
     top: 175px;
-    background-color: #dfdbe0;
-    color: black;
+    background: "linear-gradient(30deg, #020024, #090979,#94bbe9)";
+    color: white;
     opacity: 0.8;
     border-radius: 5px;
-    box-shadow: 10px 10px hsl(242, 95%, 17%);
 }
