@@ -28,7 +28,7 @@
      - name: Run the tests
        run: |
            cd backend
-            coverage run -m pytest test.py
+           pytest tests.py --doctest-modules --junitxml=junit/test-results.xml --cov --cov-report=xml --cov-report=html
      - name: Upload coverage to Codecov
        uses: codecov/codecov-action@v4
        with:
