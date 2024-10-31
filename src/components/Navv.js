@@ -33,7 +33,7 @@ function Navv(args) {
     return (
         <div>
             <Navbar
-                style={{ marginBottom: '1rem' }}
+                style={{ marginBottom: '1rem', position:'absolute', top:0, right:0, left:0}}
                 color="dark"
                 light
                 expand="md"

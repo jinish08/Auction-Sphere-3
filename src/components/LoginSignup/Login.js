@@ -53,9 +53,10 @@ const Login = () => {
         password: '',
     })
     return (
+        <body style={{background: "linear-gradient(30deg, #020024, #090979,#94bbe9)"}}>
         <div>
             <Navv />
-            <Card body className="mx-auto" style={{ width: '60%' }}>
+            <Card body className="mx-auto" style={{ width: '60%', position:'absolute', top: 150, left: 300}}>
                 <CardHeader>
                     <h3>Welcome! Login to continue</h3>
                 </CardHeader>
@@ -89,10 +90,8 @@ const Login = () => {
                     </CardText>
                 </CardBody>
             </Card>
-            <div style={{ marginTop: '25rem', marginRight: '2rem' }}>
-                <Footer />
-            </div>
         </div>
+        </body>
     )
 }
 

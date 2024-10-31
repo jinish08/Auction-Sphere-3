@@ -3,6 +3,7 @@ import Navv from './Navv'
 import logo from '../assets/Logo.png'
 import '../css/about.css'
 import myGif from '../assets/auction.gif';
+import ProductView from './ProductView';
 /**
  * This component displays information about our project.
  */
@@ -35,7 +36,7 @@ const About = () => {
                         <li>Place bids on products to grab your favourites!</li>
                         <li>track the progress of items in your Personalized dashboard</li>
                     </ol>
-                To learn about the exiting products on our webiste, please check out the<b>Products tab. </b>
+                To learn about the exiting products on our webiste, please check out our<a href="/products" style={{color:'black'}}><b>Products!</b></a>
                 </p>
                 </div>
                 <div style={{position: 'absolute', right:5, top:300}}>
@@ -43,6 +44,9 @@ const About = () => {
         </div>
                 <img src={logo} style={{ height: 175, width: 300, position: 'absolute', right:5, bottom:5}} />
             </div>
+            <div style={{position:'absolute', top: 800}}>
+                <ProductView></ProductView>
+                </div>
         </>
     )
 }
