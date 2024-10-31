@@ -300,6 +300,7 @@ create_bids_table = """CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TE
 
 create_table_claims = """CREATE TABLE IF NOT EXISTS claims(prod_id INTEGER, email TEXT NOT NULL, expiry_date TEXT NOT NULL, claim_status INTEGER, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id));"""
 
+"""Create Connection to database"""
 conn = create_connection(database)
 if conn is not None:
     create_table(conn, create_users_table)
@@ -312,3 +313,4 @@ else:
 if __name__ == "__main__":
   app.debug = True
   app.run()
+
