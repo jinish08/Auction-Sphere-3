@@ -11,15 +11,35 @@ import ProductView from './ProductView';
 const About = () => {
     return (
         <>
-            <Navv style={{position:'fixed', top:0, right:0, left:0, padding:0, mariginLeft:0}}></Navv>
-            <div style={{ textAlign: 'center', background: "linear-gradient(30deg, #020024, #090979,#94bbe9)", color: 'white', position:'fixed', bottom:0, top:60, left:0, right:0}}>
-
-
-                <h1 style={{padding: 10}}>Welcome to Auction-Sphere!</h1>
+            <Navv
+                style={{
+                    position: 'fixed',
+                    top: 0,
+                    right: 0,
+                    left: 0,
+                    padding: 0,
+                    mariginLeft: 0,
+                }}
+            ></Navv>
+            <div
+                style={{
+                    textAlign: 'center',
+                    background:
+                        'linear-gradient(30deg, #020024, #090979,#94bbe9)',
+                    color: 'white',
+                    position: 'fixed',
+                    bottom: 0,
+                    top: 60,
+                    left: 0,
+                    right: 0,
+                }}
+            >
+                <h1 style={{ padding: 10 }}>Welcome to Auction-Sphere!</h1>
 
                 <p>
-                One-stop shop for your favourite items at desired prices!<br></br>
-                Bid for exciting items and grab your favourite!
+                    One-stop shop for your favourite items at desired prices!
+                    <br></br>
+                    Bid for exciting items and grab your favourite!
                 </p>
                 <div className="about-us" style={{textAlign:"left"}}> <h3>About Us</h3>
                 <p>
