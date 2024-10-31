@@ -15,7 +15,11 @@ jobs:
           yarn install --frozen-lockfile
       - run: npm run format
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Apply formatting changes
-          branch: ${{ github.head_ref }}
+      - run: |
+          git add .
+          git commit -m "Apply formatting changes"
+          git push
+       # with:
+
+        #  commit_message: Apply formatting changes
+         # branch: 
