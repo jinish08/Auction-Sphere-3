@@ -11,7 +11,7 @@ const About = () => {
     return (
         <>
             <Navv style={{position:'fixed', top:0, right:0, left:0, padding:0, mariginLeft:0}}></Navv>
-            <div style={{ textAlign: 'center', background: "linear-gradient(90deg, #0062ff, #da61ff)", color: 'white', position:'fixed', bottom:0, top:60, left:0, right:0}}>
+            <div style={{ textAlign: 'center', background: "linear-gradient(30deg, #020024, #090979,#94bbe9)", color: 'white', position:'fixed', bottom:0, top:60, left:0, right:0}}>
 
 
                 <h1 style={{padding: 10}}>Welcome to Auction-Sphere!</h1>
@@ -20,45 +20,26 @@ const About = () => {
                 One-stop shop for your favourite items at desired prices!<br></br>
                 Bid for exciting items and grab your favourite!
                 </p>
-                <div className="about-us">Hello
+                <div className="about-us" style={{textAlign:"left"}}> <h3>About Us</h3>
                 <p>
                     Auction Sphere is an auctioning system where people can bid
                     on exciting items and also put items up for sale. Every item
                     has a bidding window, and the item goes to the highest
-                    bidder by the end of that window.
+                    bidder by the end of that window. It is agreat place to look for exciting items at your desired price!
                 </p>
+                <h3>How does it Work?</h3>
                 <p>
-                On the homepage, people can view all the latest items being
-                    put up for sale and their respective highest bids. On the
-                    product details page, apart from product details, people can
-                    view the latest bids as well as the highest bid, and can
-                    also place a bid. It's upto the seller to decide the minimum
-                    price of the product, as well as bid increments.
+                    <ol>
+                        <li>Register your Profile on our webiste</li>
+                        <li>Add a product and its details, for others to bid on!</li>
+                        <li>Place bids on products to grab your favourites!</li>
+                        <li>track the progress of items in your Personalized dashboard</li>
+                    </ol>
+                To learn about the exiting products on our webiste, please check out the<b>Products tab. </b>
                 </p>
                 </div>
-                <div style={{ mariginTop: '5rem' }}>
-                </div>
-                <div className="seller"> <h4 style={{textAlign:"center"}}>Seller</h4>
-                    <ul style={{textAlign:'left'}}>
-                        <li>Register your profile</li>
-                        <li>Register your products</li>
-                        <li>Add Maximum Bidding Days</li>
-                        <li>Add your most desired price and minimum bid</li>
-                        <li>Personalized Seller dashboard</li>
-                    </ul>
-                </div>
-                <div className="buyer"> <h4 style={{textAlign:"center"}}>Buyer</h4>
-                    <ul style={{textAlign:'left'}}>
-                        <li>Register your profile</li>
-                        <li>Bid for your favourite item</li>
-                        <li>Update Bid to secure your product!</li>
-                        <li>Personlaize Buyer Dashboard</li>
-                        <li>benefir from good deals</li>
-                    </ul>
-                </div>
-                <div>
-            <h2>Check out this GIF!</h2>
-            <img src={myGif} alt="A cool GIF" />
+                <div style={{position: 'absolute', right:5, top:300}}>
+            <img src={myGif} alt="A cool GIF" style={{ height: 200, width: 350 }}/>
         </div>
                 <img src={logo} style={{ height: 175, width: 300, position: 'absolute', right:5, bottom:5}} />
             </div>
