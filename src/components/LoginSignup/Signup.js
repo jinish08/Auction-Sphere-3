@@ -54,13 +54,14 @@ const Signup = () => {
         confirmPassword: '',
     })
     return (
+        <body style={{background: "linear-gradient(30deg, #020024, #090979,#94bbe9)", position:'fixed', top:0, right:0, left:0, bottom:0}}>
         <div>
             <Navv />
             {localStorage.getItem('auth') === 'true' ? (
                 <></>
             ) : (
                 <>
-                    <Card body className="mx-auto" style={{ width: '60%' }}>
+                    <Card body className="mx-auto" style={{ width: '60%', margin: '6rem',}}>
                         <CardHeader>
                             <h3>Sign up and bid away!</h3>
                         </CardHeader>
@@ -157,8 +158,9 @@ const Signup = () => {
                     <br />
                 </>
             )}
-            <Footer />
+            <Footer style={{margin: '1rem',}}></Footer>
         </div>
+        </body>
     )
 }
 

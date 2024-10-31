@@ -11,16 +11,7 @@ import ProductView from './ProductView';
 const About = () => {
     return (
         <>
-            <Navv
-                style={{
-                    position: 'fixed',
-                    top: 0,
-                    right: 0,
-                    left: 0,
-                    padding: 0,
-                    mariginLeft: 0,
-                }}
-            ></Navv>
+            <Navv/>
             <div
                 style={{
                     textAlign: 'center',

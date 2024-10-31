@@ -6,6 +6,7 @@ import Footer from './Footer'
 import { URL } from '../global'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { isLabelWithInternallyDisabledControl } from '@testing-library/user-event/dist/utils'
 
 const toBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -83,10 +84,12 @@ const Sell = () => {
     }, [])
 
     return (
+        <body style={{background: "linear-gradient(30deg, #020024, #090979,#94bbe9)", position:'fixed', top:0, right:0, left:0, bottom:0}}>
         <div>
             <Navv />
+           
+            <Form onSubmit={handleSubmit} style={{margin: '10rem', background:"White", padding: 10}}>
             <h4>Sell a product</h4>
-            <Form onSubmit={handleSubmit}>
                 <FormGroup>
                     <Label for="ProductName">Product Name</Label>
                     <Input
@@ -154,6 +157,7 @@ const Sell = () => {
             </Form>
             <Footer />
         </div>
+        </body>
     )
 }
 

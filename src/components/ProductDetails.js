@@ -53,6 +53,7 @@ const ProductDetails = () => {
     }, [])
     return (
         <>
+        <body style={{background: "linear-gradient(30deg, #020024, #090979,#94bbe9)", backgroundAttachment:'scroll', position:'absolute', top:0, left:0, right:0}}>
             <Navv />
             <Card
                 className="mx-auto"
@@ -60,6 +61,7 @@ const ProductDetails = () => {
                 outline
                 style={{
                     width: '45rem',
+                    margin: '5rem',
                     textAlign: 'center',
                 }}
             >
@@ -135,7 +137,7 @@ const ProductDetails = () => {
                     </div>
                 )}
             </Card>
-            <Footer />
+            </body>
         </>
     )
 }
