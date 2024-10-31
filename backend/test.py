@@ -44,6 +44,7 @@ def test_get_all_products(mock_create_call):
     mock_create_call.return_value = connection
     result = app.get_all_products()
 
+
 @patch('app.create_connection')
 def test_get_all_products(mock_create_call):
     mock_create_call = MagicMock()
