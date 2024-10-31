@@ -20,6 +20,7 @@ jobs:
         pip install autopep8
     - name: Analysing the code with autopep8
       run: |
+        cd backend
         autopep8 app.py -v
         autopep8 test.py -v
         autopep8 setup.py -v
