@@ -138,7 +138,6 @@ def profile():
     c = conn.cursor()
     c.execute(query_sell)
     products = list(c.fetchall())
-    print("Products got:", products)
     highestBids = []
     names = []
     for product in products: 
@@ -154,6 +153,27 @@ def profile():
         else: 
             highestBids.append(-1)
             names.append("N/A")
+    
+    query_2 = 'SELECT P.prod_id, P.name, P.seller_email, P.initial_price, P.date, P.increment, P.deadline_date, P.description FROM product P join bids B on P.prod_id = B.prod_id WHERE B.email = \'' + str(global_email) + '\';'
+    print("Query 2:", query_2)
+    c.execute(query_2)
+    bid_products_1 = list(c.fetchall())
+    highest_Bids = []
+    names_bids = []
+
+    for product in bid_products_1:
+        query_products ="SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + str(product[0]) +";"
+        c.execute(query_products)
+        result_bid_products = list(c.fetchall())
+        if(result_bid_products[0][0] is not None): 
+            result_bid_products = result_bid_products[0]
+            highest_Bids.append(result_bid_products[1])
+            query = "SELECT first_name, last_name FROM users WHERE email='" + str(result_bid_products[0]) +"';"
+            c.execute(query)
+            names_bids.append(list(c.fetchall())[0])
+        else: 
+            highest_Bids.append(-1)
+            names_bids.append("N/A")
 
     response = {}
     response['first_name'] = result[0][0]
@@ -165,6 +185,9 @@ def profile():
     response['products'] = products
     response['maximum_bids'] = highestBids 
     response['names'] = names
+    response['bid_products'] = bid_products_1
+    response['bid_bids'] = highest_Bids
+    response['bid_names'] = names_bids
 
     return jsonify(response)
 

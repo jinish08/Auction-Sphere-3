@@ -47,7 +47,21 @@ const Profile = () => {
               ) : (
                 <div>No products found</div>
               )}
-            </Row></>
+            </Row>
+            <p>Products you have bid on:</p>
+            <Row>
+                {data && data.bid_products ? (
+                  data.bid_products.map((product, index) => (
+                    <ProductCard
+                      key={index}
+                      product={product}
+                      maxBid={data.bid_bids[index]}
+                      name={data.bid_names[index]} />
+                  ))
+                ) : (
+                  <div>No products found</div>
+                )}
+              </Row></>
         ) : (
           <p>Loading data...</p>
         )}
