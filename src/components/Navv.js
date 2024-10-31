@@ -56,15 +56,29 @@ function Navv(args) {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="justify-content-end" navbar>
                         <NavItem>
-                            <NavLink href="/products" style={{color:'white'}}>Products</NavLink>
+                            <NavLink
+                                href="/products"
+                                style={{ color: 'white' }}
+                            >
+                                Products
+                            </NavLink>
                         </NavItem>
                         {localStorage.getItem('auth') === 'true' ? (
                             <>
                                 <NavItem>
-                                    <NavLink href="/sell" style={{color:'white'}}>Sell</NavLink>
+                                    <NavLink
+                                        href="/sell"
+                                        style={{ color: 'white' }}
+                                    >
+                                        Sell
+                                    </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink style={{color:'white'}} href="/" onClick={handleLogout}>
+                                    <NavLink
+                                        style={{ color: 'white' }}
+                                        href="/"
+                                        onClick={handleLogout}
+                                    >
                                         Logout
                                     </NavLink>
                                 </NavItem>
@@ -72,10 +86,20 @@ function Navv(args) {
                         ) : (
                             <>
                                 <NavItem className="float-right">
-                                    <NavLink href="/login" style={{color:'white'}}>Login</NavLink>
+                                    <NavLink
+                                        href="/login"
+                                        style={{ color: 'white' }}
+                                    >
+                                        Login
+                                    </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="/signup" style={{color:'white'}}>Signup</NavLink>
+                                    <NavLink
+                                        href="/signup"
+                                        style={{ color: 'white' }}
+                                    >
+                                        Signup
+                                    </NavLink>
                                 </NavItem>
                             </>
                         )}

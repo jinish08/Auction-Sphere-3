@@ -1,20 +1,19 @@
-.about-content{
+.about-content {
     text-align: center;
     color: white;
     display: inline-block;
-
 }
 
-.about{
+.about {
     background-color: rgb(59, 3, 59);
     width: device-width;
-    position:relative;
+    position: relative;
     height: 100%;
     top: 0px;
     bottom: 0px;
     margin-bottom: 0px;
 }
-.img-css{
+.img-css {
     position: absolute;
     height: 150px;
     width: 200px;
@@ -24,7 +23,7 @@
     margin-right: 10px;
 }
 
-.buyer{
+.buyer {
     position: absolute;
     left: 10px;
     top: 500px;
@@ -36,7 +35,7 @@
     background-color: green;
 }
 
-.seller{
+.seller {
     position: absolute;
     left: 450px;
     top: 500px;
@@ -46,13 +45,13 @@
     background-color: #22c1c3;
 }
 
-.about-us{
+.about-us {
     position: absolute;
     width: 98%;
     padding: 20px;
     left: 5px;
     top: 175px;
-    background-color:#dfdbe0;
+    background-color: #dfdbe0;
     color: black;
     opacity: 0.8;
     border-radius: 5px;
