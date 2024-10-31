@@ -33,7 +33,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": " CI=true react-scripts test --coverage",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "doc": "react-doc-generator src -o DOCUMENTATION.md",
     "coverage": "CI=true yarn test --coverage --watchAll --collectCoverageFrom='src/**/*.{js,jsx}'"
@@ -58,6 +58,7 @@
   },
   "devDependencies": {
     "babel-jest": "^29.1.2",
-    "prettier": "2.7.1"
+    "prettier": "2.7.1",
+    "jest": "^27.5.1"
   }
 }

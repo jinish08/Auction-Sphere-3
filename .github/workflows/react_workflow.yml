@@ -26,7 +26,10 @@ jobs:
 
     - name: Run the tests Generate coverage report
       run: npm test
-      
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+
     - name: Documentation generator
       run: npx styleguidist build
       
