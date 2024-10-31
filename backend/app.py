@@ -133,13 +133,38 @@ def profile():
     c.execute(query_bid)
     result_bid = list(c.fetchall())
 
+    query_sell = 'SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product WHERE seller_email=\'' + str(global_email) + '\'ORDER BY date DESC LIMIT 10;'
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query_sell)
+    products = list(c.fetchall())
+    print("Products got:", products)
+    highestBids = []
+    names = []
+    for product in products: 
+        query = "SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + str(product[0]) +";"
+        c.execute(query)
+        result_bids = list(c.fetchall())
+        if(result_bids[0][0] is not None): 
+            result_bids = result_bids[0]
+            highestBids.append(result_bids[1])
+            query = "SELECT first_name, last_name FROM users WHERE email='" + str(result_bids[0]) +"';"
+            c.execute(query)
+            names.append(list(c.fetchall())[0])
+        else: 
+            highestBids.append(-1)
+            names.append("N/A")
+
     response = {}
     response['first_name'] = result[0][0]
     response['last_name'] = result[0][1]
     response['contact_no'] = result[0][2]
     response['email'] = result[0][3]
-    response['products'] = result_sell[0][0]
-    response['bids'] = result_bid[0][0]
+    response['no_products'] = result_sell[0][0]
+    response['no_bids'] = result_bid[0][0]
+    response['products'] = products
+    response['maximum_bids'] = highestBids 
+    response['names'] = names
 
     return jsonify(response)
 
