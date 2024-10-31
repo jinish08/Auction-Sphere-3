@@ -1,4 +1,4 @@
-import os
+#import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3
@@ -7,6 +7,8 @@ from datetime import datetime, timedelta
 
 app = Flask(__name__)
 CORS(app)
+
+global_email = None
 
 def create_connection(db_file):
   conn = None
@@ -83,6 +85,7 @@ If the email and password are correct, login is successful else user is asked to
 """
 @app.route("/login", methods=["POST"])
 def login(): 
+    global global_email
     email = request.get_json()['email']
     password = request.get_json()['password']
     
@@ -97,6 +100,7 @@ def login():
 
     if(len(result) == 1): 
         response["message"] = "Logged in successfully"
+        global_email = str(email)
     else: 
         # check if email exists, but password is incorrect
         query = "SELECT COUNT(*) FROM users WHERE email='" + str(email) + "';"
@@ -106,6 +110,37 @@ def login():
             response["message"] = "Invalid credentials!"
         else: 
             response["message"] = "Please create an account!"
+    return jsonify(response)
+
+
+@app.route('/profile', methods=["POST"])
+def profile():
+    global global_email
+    
+    # create db connection
+    conn = create_connection(database)
+    c = conn.cursor()
+
+    query = 'SELECT * FROM users WHERE email=\'' + str(global_email) + "\';" 
+    c.execute(query)
+    result = list(c.fetchall())
+
+    query_sell = 'SELECT COUNT(*) FROM product WHERE seller_email=\'' + str(global_email) + '\';'
+    c.execute(query_sell)
+    result_sell = list(c.fetchall())
+
+    query_bid = 'SELECT COUNT(*) FROM bids WHERE email=\'' + str(global_email) + '\';'
+    c.execute(query_bid)
+    result_bid = list(c.fetchall())
+
+    response = {}
+    response['first_name'] = result[0][0]
+    response['last_name'] = result[0][1]
+    response['contact_no'] = result[0][2]
+    response['email'] = result[0][3]
+    response['products'] = result_sell[0][0]
+    response['bids'] = result_bid[0][0]
+
     return jsonify(response)
 
 """ 
@@ -272,13 +307,17 @@ def get_landing_page():
     c = conn.cursor()
     c.execute(query)
     products = list(c.fetchall())
+    print("Products got:", products)
     highestBids = []
     names = []
     for product in products: 
         query = "SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + str(product[0]) +";"
         c.execute(query)
         result = list(c.fetchall())
-        if(result[0][0] != None): 
+        print("Results got:", result)
+        print("\n0", result[0])
+        print("\n0,0", result[0][0])
+        if(result[0][0] is not None): 
             result = result[0]
             highestBids.append(result[1])
             query = "SELECT first_name, last_name FROM users WHERE email='" + str(result[0]) +"';"
