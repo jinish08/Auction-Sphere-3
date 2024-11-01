@@ -53,7 +53,7 @@ const Login = () => {
         password: '',
     })
     return (
-        <body
+        <div
             style={{
                 background: 'linear-gradient(30deg, #020024, #090979,#94bbe9)',
                 position: 'fixed',
@@ -104,7 +104,7 @@ const Login = () => {
                     </CardBody>
                 </Card>
             </div>
-        </body>
+        </div>
     )
 }
 

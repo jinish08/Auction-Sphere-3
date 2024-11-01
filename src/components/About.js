@@ -20,7 +20,7 @@ import logo2 from '../assets/logo_new2.png'
 const About = () => {
     return (
         <>
-            <body
+            <div
                 style={{
                     background:
                         'linear-gradient(30deg, #020024, #090979,#94bbe9)',
@@ -43,14 +43,13 @@ const About = () => {
                     <h1 style={{ padding: 10 }}>Welcome to Auction-Sphere!</h1>
 
                     <p>
-                        One-stop shop for your favourite items at desired
-                        prices!
+                        One-stop shop for your favourite items at desired prices!
                         <br></br>
                         Bid for exciting items and grab your favourite!
                     </p>
                 </div>
                 <div
-                    class="scroll-container"
+                    className="scroll-container"
                     style={{ position: 'absolute', left: 5, top: '13rem' }}
                 >
                     <a href="/Products">
@@ -119,7 +118,7 @@ const About = () => {
                         price!
                     </p>
                     <h3>How does it Work?</h3>
-                    <p>
+                    <div>
                         <ol>
                             <li>Register your Profile on our webiste</li>
                             <li>
@@ -139,7 +138,7 @@ const About = () => {
                         <a href="/products" style={{ color: 'white' }}>
                             <b>Products!</b>
                         </a>
-                    </p>
+                    </div>
                 </div>
                 <img
                     src={logo2}
@@ -152,7 +151,7 @@ const About = () => {
                         borderRadius: 5,
                     }}
                 />
-            </body>
+            </div>
         </>
     )
 }
