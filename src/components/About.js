@@ -141,7 +141,17 @@ const About = () => {
                         </a>
                     </p>
                 </div>
-                <img src={logo2} style={{ height: 160, width: 300, position: 'absolute', right:7, bottom:7, borderRadius:5}} />
+                <img
+                    src={logo2}
+                    style={{
+                        height: 160,
+                        width: 300,
+                        position: 'absolute',
+                        right: 7,
+                        bottom: 7,
+                        borderRadius: 5,
+                    }}
+                />
             </body>
         </>
     )
