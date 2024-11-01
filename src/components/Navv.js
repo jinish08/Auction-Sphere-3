@@ -90,8 +90,10 @@ function Navv(args) {
                                 </NavItem>
                                 <Nav></Nav>
                                 <Nav className="ms-auto">
-                                    <NavLink href="/profile">
-                                        Here is a check for the profile link.
+                                    <NavLink 
+                                        style={{ color: 'white' }}
+                                        href="/profile">
+                                        Profile
                                     </NavLink>
                                 </Nav>
                             </>

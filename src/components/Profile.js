@@ -24,6 +24,15 @@ const Profile = () => {
     }, [])
     return (
         <>
+        <div
+                style={{
+                    background:
+                        'linear-gradient(30deg, #020024, #090979,#94bbe9)',
+                    backgroundAttachment: 'scroll',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                }}>
             <Navv />
             <div>
                 {data ? (
@@ -33,18 +42,20 @@ const Profile = () => {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 gap: '10px',
+                                marginTop: '5rem',
                                 marginBottom: '20px',
                                 border: '1px solid #ddd',
                                 borderRadius: '5px',
                                 padding: '15px',
                             }}
                         >
-                            <h3>Your information:</h3>
+                            <h3 style={{color: 'white'}}>Your information:</h3>
                             <p
                                 style={{
                                     fontSize: '16px',
                                     lineHeight: 1.5,
                                     fontWeight: 'bold',
+                                    color: 'white'
                                 }}
                             >
                                 First name: {data.first_name}
@@ -54,6 +65,7 @@ const Profile = () => {
                                     fontSize: '16px',
                                     lineHeight: 1.5,
                                     fontWeight: 'bold',
+                                    color: 'white'
                                 }}
                             >
                                 Last name: {data.last_name}
@@ -63,6 +75,7 @@ const Profile = () => {
                                     fontSize: '16px',
                                     lineHeight: 1.5,
                                     fontWeight: 'bold',
+                                    color: 'white'
                                 }}
                             >
                                 Email id: {data.email}
@@ -72,6 +85,7 @@ const Profile = () => {
                                     fontSize: '16px',
                                     lineHeight: 1.5,
                                     fontWeight: 'bold',
+                                    color: 'white'
                                 }}
                             >
                                 Contact number: {data.contact_no}
@@ -81,6 +95,7 @@ const Profile = () => {
                                     fontSize: '16px',
                                     lineHeight: 1.5,
                                     fontWeight: 'bold',
+                                    color: 'white'
                                 }}
                             >
                                 Number of products put for sale:{' '}
@@ -91,6 +106,7 @@ const Profile = () => {
                                     fontSize: '16px',
                                     lineHeight: 1.5,
                                     fontWeight: 'bold',
+                                    color: 'white'
                                 }}
                             >
                                 You have bid on: {data.no_bids} product(s)
@@ -101,6 +117,7 @@ const Profile = () => {
                                 fontSize: '16px',
                                 lineHeight: 1.5,
                                 fontWeight: 'bold',
+                                color: 'white'
                             }}
                         >
                             Products put for sale:
@@ -124,6 +141,7 @@ const Profile = () => {
                                 fontSize: '16px',
                                 lineHeight: 1.5,
                                 fontWeight: 'bold',
+                                color: 'white'
                             }}
                         >
                             Products you have bid on:
@@ -148,6 +166,7 @@ const Profile = () => {
                 )}
             </div>
             <Footer />
+            </div>
         </>
     )
 }
