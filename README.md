@@ -45,27 +45,19 @@ On the products, people can view all the latest items being put up for sale and 
 
 The `docs` folder incorporates all necessary documents and documentation in our project.
 
+Forntend Documentation: 
+Backend Documentation: 
+
 ## Tools used
 
-Code formatter: Prettier
+Code formatter: Prettier, Autopep8, EsLint, pylint
 
-Tech stack: React.js, Flask, SQLite
+Tech stack: React.js, Flask, SQLite, python, JavaScript
 
 ## To run our React application
 
-You will need Node.js and NPM installed. You can refer this article if not installed already: https://kinsta.com/blog/how-to-install-node-js/
-
-First, navigate to our application on the terminal and install all the packages using
-`npm i`
-
-In case this throws any error, install the yarn package manager:
-`npm install --global yarn`
-
-And then to install all the packages, run
-`yarn`
-
-Now, to run our application, run
-`npm start`
+Frontend Setup:
+Backend Setup:
 
 ### Code coverage
 
@@ -78,9 +70,14 @@ To run code coverage, just do:
 This will not only give you a detailed report on your terminal, but will also generate a .html file for the reporrt as seen here in our project:
 https://github.com/kartikson1/Auction-Sphere/blob/main/coverage/lcov-report/index.html
 
-## Roadmap
+## Link to Discussion Channel:
+https://github.com/LavanyaMiddha/Auction-Sphere-2/discussions
 
-We have a lot planned for the future! Completed tasks and future enhancements can be found [here](https://github.com/users/kartikson1/projects/1/views/1)
+## Support
+For Any quesries, please use our discussions channel:
+https://github.com/LavanyaMiddha/Auction-Sphere-2/discussions
+
+or, reach out to any of the group members mentioned below
 
 ## Group-3
 
@@ -89,3 +86,20 @@ We have a lot planned for the future! Completed tasks and future enhancements ca
 [Nayan Taori](https://github.com/NDT2000)
 
 [Prathamesh Thakur](https://github.com/Prathamesh-Thakur)
+
+
+## Credits:
+This project is an extension of the one created before by:
+Mithil Dani
+
+Neha Kale
+
+Rishikesh Yelne
+
+Ritwik Vaidya
+
+Vansh Mehta
+
+Pradyumna Khawas
+
+Link to the project: https://github.com/mithildani/Auction-Sphere
