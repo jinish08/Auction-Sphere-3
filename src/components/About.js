@@ -43,7 +43,8 @@ const About = () => {
                     <h1 style={{ padding: 10 }}>Welcome to Auction-Sphere!</h1>
 
                     <p>
-                        One-stop shop for your favourite items at desired prices!
+                        One-stop shop for your favourite items at desired
+                        prices!
                         <br></br>
                         Bid for exciting items and grab your favourite!
                     </p>
