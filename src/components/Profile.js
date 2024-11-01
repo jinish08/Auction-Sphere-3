@@ -5,6 +5,7 @@ import React, { useEffect, useState} from 'react';
 import { Card, CardGroup, Row } from 'reactstrap';
 import ProductCard from './ProductCard';
 import Navv from "./Navv";
+import Footer from "./Footer";
 
 const Profile = () => {
     const [data, setData] = useState(null);
@@ -28,7 +29,7 @@ const Profile = () => {
         {data ? (
           <>
           <div style={{display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px', border: '1px solid #ddd', borderRadius: '5px', padding: '15px'}}>
-            <h3>Your information(Dont't worry, the password is not shown):</h3>
+            <h3>Your information:</h3>
             <p style={{fontSize: '16px', lineHeight: 1.5, fontWeight: 'bold'}}>First name: {data.first_name}</p>
             <p style={{fontSize: '16px', lineHeight: 1.5, fontWeight: 'bold'}}>Last name: {data.last_name}</p>
             <p style={{fontSize: '16px', lineHeight: 1.5, fontWeight: 'bold'}}>Email id: {data.email}</p>
@@ -67,7 +68,9 @@ const Profile = () => {
         ) : (
           <p>Loading data...</p>
         )}
-      </div></>
+      </div>
+      <Footer /></>
+      
     )
 }
 
