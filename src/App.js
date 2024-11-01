@@ -8,6 +8,7 @@ import Products from './components/Products'
 import Sell from './components/Sell'
 import ProductDetails from './components/ProductDetails'
 import AddBid from './components/AddBid'
+import Profile from './components/Profile'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/products" element={<Products />} />
                 <Route path="/sell" element={<Sell />} />
                 <Route path="/details/:id" element={<ProductDetails />} />
+                <Route path="/profile" element={<Profile />} />
             </Routes>
         </>
         // </BrowserRouter>
