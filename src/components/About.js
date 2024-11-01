@@ -12,6 +12,7 @@ import treadmill from '../assets/treadmill.webp';
 import sunglass from '../assets/sungalss.jpeg';
 import ProductView from './ProductView'
 import '../css/gallery.css'
+import logo2 from '../assets/logo_new2.png'
 /**
  * This component displays information about our project.
  */
@@ -59,7 +60,7 @@ const About = () => {
                 To learn about the exiting products on our webiste, please check out our<a href="/products" style={{color:'white'}}><b>Products!</b></a>
                 </p>
                 </div>
-                <img src={logo} style={{ height: 175, width: 300, position: 'absolute', right:7, bottom:7}} />
+                <img src={logo2} style={{ height: 160, width: 300, position: 'absolute', right:7, bottom:7, borderRadius:5}} />
 
             </body>
         </>
