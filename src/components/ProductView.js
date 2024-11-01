@@ -11,26 +11,23 @@ import { toast } from 'react-toastify'
  */
 
 const TopProducts = () => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState(null)
 
     useEffect(() => {
-    const fetchData = async () => {
-        try{
-        const response = await axios.get(`${URL}/getTopTenProducts`)
-        setData(response.data)
-    }
-    catch (e)
-    {
-        toast.error(e)
-    }
-    };
-    fetchData();
-}, []);
-    return(
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${URL}/getTopTenProducts`)
+                setData(response.data)
+            } catch (e) {
+                toast.error(e)
+            }
+        }
+        fetchData()
+    }, [])
+    return (
         <div>
-        <>
-        </>
-      </div>
+            <></>
+        </div>
     )
 }
 
