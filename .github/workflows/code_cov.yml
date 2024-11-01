@@ -1,35 +1,34 @@
- name: Build
- on:
-   [push, pull_request]
-   
- jobs:
-   build:
-     runs-on: ubuntu-latest
-     steps:
-     - name: Checkout repository
-       uses: actions/checkout@v4
-     - name: Install Python 3.x
-       uses: actions/setup-python@v3
-       with:
-         python-version: 3.x
-     - name: Install dependencies
-       run: |
-         pip install flask
-         pip install flask-cors
-         pip install pytest-cov
-         pip install flake8 pytest
-         echo requirements installed
-     - name: Lint with flake8
-       run: |
-         # stop the build if there are Python syntax errors or undefined names
-         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-     - name: Run the tests
-       run: |
-           cd backend
-            coverage run -m pytest test.py
-     - name: Upload coverage to Codecov
-       uses: codecov/codecov-action@v4
-       with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+name: Build
+on: [push, pull_request]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+            - name: Install Python 3.x
+              uses: actions/setup-python@v3
+              with:
+                  python-version: 3.x
+            - name: Install dependencies
+              run: |
+                  pip install flask
+                  pip install flask-cors
+                  pip install pytest-cov
+                  pip install flake8 pytest
+                  echo requirements installed
+            - name: Lint with flake8
+              run: |
+                  # stop the build if there are Python syntax errors or undefined names
+                  flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+                  # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+                  flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+            - name: Run the tests
+              run: |
+                  cd backend
+                  pytest test.py --doctest-modules --junitxml=junit/test-results.xml --cov --cov-report=xml --cov-report=html
+            - name: Upload coverage to Codecov
+              uses: codecov/codecov-action@v4
+              with:
+                  token: ${{ secrets.CODECOV_TOKEN }}

@@ -1,33 +1,32 @@
 name: CI/CD
 
-on:
-  [push, pull_request]
+on: [push, pull_request]
 
 jobs:
-  build:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
 
-    runs-on: ubuntu-latest
+            - name: Set up Node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 16.x # Use the version you need
 
-    strategy:
-      matrix:
-        node-version: [12.x]
+            - name: Install dependencies
+              run: yarn install
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+            - name: Run tests and collect coverage
+              run: npm run coverage
 
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run the tests Generate coverage report
-      run: npm test
-      
-    - name: Documentation generator
-      run: npx styleguidist build
-      
-      
+            - name: Upload coverage to Codecov
+              uses: codecov/codecov-action@v2
+              with:
+                  token: ${{ secrets.CODECOV_TOKEN }} # Add CODECOV_TOKEN in GitHub secrets
+                  files: coverage/lcov.info
+                  flags: unittests
+                  name: codecov-coverage
+                  fail_ci_if_error: true
+            - name: Documentation generator
+              run: npx styleguidist build
