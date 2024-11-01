@@ -112,6 +112,13 @@ def login():
             response["message"] = "Please create an account!"
     return jsonify(response)
 
+""" 
+API end point for user profile.
+User email is set in the login function which is used here to pull the user stats.
+Page includes information entered by the user i.e first name, last name, contact number and email.
+It also displays the specific product cards for the user. 
+It shows the products the user has put for sale and the products for which the user has submitted a bid.
+"""
 
 @app.route('/profile', methods=["POST"])
 def profile():

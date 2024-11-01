@@ -2,7 +2,7 @@ import axios from "axios";
 import { URL } from "../global";
 import { toast } from "react-toastify";
 import React, { useEffect, useState} from 'react';
-import { CardGroup, Row } from 'reactstrap';
+import { Card, CardGroup, Row } from 'reactstrap';
 import ProductCard from './ProductCard';
 import Navv from "./Navv";
 
@@ -26,15 +26,17 @@ const Profile = () => {
     return(
       <><Navv /><div>
         {data ? (
-          <><div>
-            <p>First name: {data.first_name}</p>
-            <p>Last name: {data.last_name}</p>
-            <p>Email id: {data.email}</p>
-            <p>Contact number: {data.contact_no}</p>
-            <p>Number of products displayed: {data.no_products}</p>
-            <p>You have bid on:{data.no_bids} products</p>
+          <>
+          <div style={{display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px', border: '1px solid #ddd', borderRadius: '5px', padding: '15px'}}>
+            <h3>Your information(Dont't worry, the password is not shown):</h3>
+            <p style={{fontSize: '16px', lineHeight: 1.5, fontWeight: 'bold'}}>First name: {data.first_name}</p>
+            <p style={{fontSize: '16px', lineHeight: 1.5, fontWeight: 'bold'}}>Last name: {data.last_name}</p>
+            <p style={{fontSize: '16px', lineHeight: 1.5, fontWeight: 'bold'}}>Email id: {data.email}</p>
+            <p style={{fontSize: '16px', lineHeight: 1.5, fontWeight: 'bold'}}>Contact number: {data.contact_no}</p>
+            <p style={{fontSize: '16px', lineHeight: 1.5, fontWeight: 'bold'}}>Number of products put for sale: {data.no_products} product(s)</p>
+            <p style={{fontSize: '16px', lineHeight: 1.5, fontWeight: 'bold'}}>You have bid on: {data.no_bids} product(s)</p>
           </div>
-          <p>Products put for sale:</p>
+          <p style={{fontSize: '16px', lineHeight: 1.5, fontWeight: 'bold'}}>Products put for sale:</p>
           <Row>
               {data && data.products ? (
                 data.products.map((product, index) => (
@@ -48,7 +50,7 @@ const Profile = () => {
                 <div>No products found</div>
               )}
             </Row>
-            <p>Products you have bid on:</p>
+            <p style={{fontSize: '16px', lineHeight: 1.5, fontWeight: 'bold'}}>Products you have bid on:</p>
             <Row>
                 {data && data.bid_products ? (
                   data.bid_products.map((product, index) => (
