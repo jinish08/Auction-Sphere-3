@@ -4,15 +4,17 @@ import { Button, Card, CardImg, CardTitle, CardText } from 'reactstrap'
 import axios from 'axios'
 
 import AddBid from './AddBid'
-import Footer from './Footer'
 import Navv from './Navv'
 import { URL } from '../global'
 import { toast } from 'react-toastify'
-
+import CountdownTimer from './Countdown'
 /**
  * This component is the details page of a single product.
  */
 
+function calcDate(inputDate){
+    return new Date(inputDate)
+}
 const ProductDetails = () => {
     let { id } = useParams()
     const [showAddBid, setShowAddBid] = useState(false)
@@ -67,6 +69,9 @@ const ProductDetails = () => {
                         <div>
                             <CardTitle tag="h3" style={{ textAlign: 'center' }}>
                                 {product[1]}{' '}
+                            </CardTitle>
+                            <CardTitle style={{ textAlign: 'right' }}>
+                                <CountdownTimer targetDate = {calcDate(product[7])}/>
                             </CardTitle>
                             <hr />
                             <CardImg
