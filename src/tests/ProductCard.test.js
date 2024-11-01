@@ -12,12 +12,14 @@ jest.mock('react-toastify', () => ({
 }))
 
 // Mock data
-const mockProduct = [1, 'Sample Product', 'Lavanya M', 50]
-const mockMaxBid = 75
-const mockName = 'Jane K'
-const mockImageUrl = 'https://example.com/sample-image.jpg'
+const productName =  'Chair'
+const initialPrice =  '100'
+const increment =  '20'
+const datePosted =  Date.now()
+const description = 'Nice'
+const biddingTime =  '2'
 
-describe('ProductCard Component', () => {
+describe('Product information', () => {
     beforeEach(() => {
         axios.post.mockClear()
         toast.error.mockClear()
