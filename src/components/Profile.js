@@ -32,6 +32,7 @@ const Profile = () => {
                     position: 'absolute',
                     top: 0,
                     left: 0,
+                    right:0
                 }}
             >
                 <Navv />
@@ -168,7 +169,6 @@ const Profile = () => {
                         <p>Loading data...</p>
                     )}
                 </div>
-                <Footer />
             </div>
         </>
     )
