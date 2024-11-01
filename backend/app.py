@@ -344,6 +344,20 @@ def get_landing_page():
     return jsonify(response)
 
 
+@app.route("/getTopTenProducts", methods=["GET"])
+def get_top_products():
+    response = {}
+    query = "SELECT name, photo, description FROM product ORDER BY date DESC LIMIT 10;"
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    products = list(c.fetchall())
+    if products.__len__ ==0:
+        print("No data found")
+    response = {
+        "products": products}
+    return jsonify(response)
+
 database = r"auction.db"
 create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
 
