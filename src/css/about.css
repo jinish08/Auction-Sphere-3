@@ -51,7 +51,7 @@
     padding: 20px;
     left: 5px;
     top: 175px;
-    background: "linear-gradient(30deg, #020024, #090979,#94bbe9)";
+    background: 'linear-gradient(30deg, #020024, #090979,#94bbe9)';
     color: white;
     opacity: 0.8;
     border-radius: 5px;
