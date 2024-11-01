@@ -88,10 +88,12 @@ function Navv(args) {
                                         Logout
                                     </NavLink>
                                 </NavItem>
-                    <Nav></Nav>
-                    <Nav className = "ms-auto">
-                        <NavLink href='/profile'>Here is a check for the profile link.</NavLink>
-                    </Nav>
+                                <Nav></Nav>
+                                <Nav className="ms-auto">
+                                    <NavLink href="/profile">
+                                        Here is a check for the profile link.
+                                    </NavLink>
+                                </Nav>
                             </>
                         ) : (
                             <>
