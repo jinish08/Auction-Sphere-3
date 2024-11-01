@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import {
-    Button,
-    Card,
-    CardImg,
-    CardTitle,
-    CardText,
-} from 'reactstrap'
+import { Button, Card, CardImg, CardTitle, CardText } from 'reactstrap'
 import axios from 'axios'
 
 import AddBid from './AddBid'
