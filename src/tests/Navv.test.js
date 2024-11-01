@@ -25,16 +25,16 @@ test('renders navigation links when user is not authenticated', () => {
             getItem: jest.fn((key) => (key === 'auth' ? 'false' : null)),
         },
         writable: true,
-    });
+    })
 
-    render(<Navv />); // Render the Navv component
+    render(<Navv />) // Render the Navv component
 
     // Assert that the Login and Signup links are present
-    expect(screen.getByText(/login/i)).toBeInTheDocument();
-    expect(screen.getByText(/signup/i)).toBeInTheDocument();
-    expect(screen.queryByText(/products/i)).toBeInTheDocument();
-    expect(screen.queryByText(/sell/i)).toBeNull(); // Sell link should not be present
-});
+    expect(screen.getByText(/login/i)).toBeInTheDocument()
+    expect(screen.getByText(/signup/i)).toBeInTheDocument()
+    expect(screen.queryByText(/products/i)).toBeInTheDocument()
+    expect(screen.queryByText(/sell/i)).toBeNull() // Sell link should not be present
+})
 
 test('renders navigation links when user is authenticated', () => {
     // Mock localStorage to simulate authenticated user
@@ -43,12 +43,12 @@ test('renders navigation links when user is authenticated', () => {
             getItem: jest.fn((key) => (key === 'auth' ? 'true' : null)),
         },
         writable: true,
-    });
-    render(<Navv />); // Render the Navv component
+    })
+    render(<Navv />) // Render the Navv component
 
     // Assert that the Sell and Logout links are present
-    expect(screen.getByText(/sell/i)).toBeInTheDocument();
-    expect(screen.getByText(/logout/i)).toBeInTheDocument();
-    expect(screen.queryByText(/login/i)).toBeNull(); 
-    expect(screen.queryByText(/signup/i)).toBeNull(); 
-});
+    expect(screen.getByText(/sell/i)).toBeInTheDocument()
+    expect(screen.getByText(/logout/i)).toBeInTheDocument()
+    expect(screen.queryByText(/login/i)).toBeNull()
+    expect(screen.queryByText(/signup/i)).toBeNull()
+})
