@@ -45,8 +45,8 @@ On the products, people can view all the latest items being put up for sale and 
 
 The `docs` folder incorporates all necessary documents and documentation in our project.
 
-Forntend Documentation: 
-Backend Documentation: 
+Forntend Documentation:
+Backend Documentation:
 
 ## Tools used
 
@@ -71,9 +71,11 @@ This will not only give you a detailed report on your terminal, but will also ge
 https://github.com/kartikson1/Auction-Sphere/blob/main/coverage/lcov-report/index.html
 
 ## Link to Discussion Channel:
+
 https://github.com/LavanyaMiddha/Auction-Sphere-2/discussions
 
 ## Support
+
 For Any quesries, please use our discussions channel:
 https://github.com/LavanyaMiddha/Auction-Sphere-2/discussions
 
@@ -87,8 +89,8 @@ or, reach out to any of the group members mentioned below
 
 [Prathamesh Thakur](https://github.com/Prathamesh-Thakur)
 
-
 ## Credits:
+
 This project is an extension of the one created before by:
 Mithil Dani
 
