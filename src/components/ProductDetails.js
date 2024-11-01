@@ -4,14 +4,8 @@ import {
     Button,
     Card,
     CardImg,
-    CardBody,
     CardTitle,
     CardText,
-    Row,
-    Col,
-    CardHeader,
-    CardGroup,
-    CardSubtitle,
 } from 'reactstrap'
 import axios from 'axios'
 
@@ -53,7 +47,7 @@ const ProductDetails = () => {
     }, [])
     return (
         <>
-            <body
+            <div
                 style={{
                     background:
                         'linear-gradient(30deg, #020024, #090979,#94bbe9)',
@@ -152,7 +146,7 @@ const ProductDetails = () => {
                         </div>
                     )}
                 </Card>
-            </body>
+            </div>
         </>
     )
 }

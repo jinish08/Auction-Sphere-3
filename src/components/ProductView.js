@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+/*import React, { useEffect, useState } from 'react'
 import Footer from './Footer'
 import Navv from './Navv'
 import ProductCard from './ProductCard'
@@ -10,7 +10,7 @@ import { toast } from 'react-toastify'
  * This component displays all products on the products page.
  */
 
-const TopProducts = () => {
+/*const TopProducts = () => {
     const [data, setData] = useState(null)
 
     useEffect(() => {
@@ -32,3 +32,4 @@ const TopProducts = () => {
 }
 
 export default TopProducts
+*/

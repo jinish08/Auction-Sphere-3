@@ -30,7 +30,7 @@ const Products = () => {
 
     return (
         <>
-            <body
+            <div
                 style={{
                     background:
                         'linear-gradient(30deg, #020024, #090979,#94bbe9)',
@@ -41,9 +41,6 @@ const Products = () => {
                 }}
             >
                 <Navv />
-                {/* {products.map((product) => (
-        <ProductCard product={product} />
-      ))} */}
                 <Row style={{ margin: '5rem' }}>
                     {apiData && apiData.products ? (
                         apiData.products.map((product, index) => (
@@ -59,7 +56,7 @@ const Products = () => {
                     )}
                 </Row>
                 <Footer />
-            </body>
+            </div>
         </>
     )
 }
