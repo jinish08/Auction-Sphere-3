@@ -12,7 +12,7 @@ import CountdownTimer from './Countdown'
  * This component is the details page of a single product.
  */
 
-function calcDate(inputDate){
+function calcDate(inputDate) {
     return new Date(inputDate)
 }
 const ProductDetails = () => {
@@ -71,7 +71,9 @@ const ProductDetails = () => {
                                 {product[1]}{' '}
                             </CardTitle>
                             <CardTitle style={{ textAlign: 'right' }}>
-                                <CountdownTimer targetDate = {calcDate(product[7])}/>
+                                <CountdownTimer
+                                    targetDate={calcDate(product[7])}
+                                />
                             </CardTitle>
                             <hr />
                             <CardImg
