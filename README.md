@@ -10,7 +10,7 @@
 
 ![GitHub top language](https://img.shields.io/github/languages/top/LavanyaMiddha/Auction-Sphere-2)
 
-[![DOI](https://zenodo.org/badge/545100230.svg)](https://zenodo.org/badge/latestdoi/545100230)
+[![DOI](https://zenodo.org/badge/545100230.svg)](https://doi.org/10.5281/zenodo.14027540)
 
 Repository for CSC 510 Software Engineering project 2, created by Group : Lavanya Middha, Nayan Taori, Prathamesh Thakur
 
