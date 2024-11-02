@@ -10,20 +10,27 @@
 
 ![GitHub top language](https://img.shields.io/github/languages/top/LavanyaMiddha/Auction-Sphere-2)
 
-[![DOI](https://zenodo.org/badge/545100230.svg)](https://zenodo.org/badge/latestdoi/545100230)
+[![DOI](https://zenodo.org/badge/545100230.svg)](https://doi.org/10.5281/zenodo.14027540)
 
 Repository for CSC 510 Software Engineering project 2, created by Group : Lavanya Middha, Nayan Taori, Prathamesh Thakur
 
 Click on the image below to view the demo video of the project
 
-[![Demo Vidoe of the project](https://img.youtube.com/vi/AzgGo2B63z0/0.jpg)](https://www.youtube.com/watch?v=AzgGo2B63z0)
+<h2>Demo Video of the previous project</h2>
+https://drive.google.com/file/d/1md_n8eUBSGGTeWp78R8wSBhKQ9uqrqb5/view?usp=sharing
+
+<h2>Demo Video of the improved project</h2>
+https://drive.google.com/file/d/1-1IImCdds80cHaB8_4Agh7kr-HKMnpRh/view?usp=sharing
+
+<h2> Animated Video on Auction Sphere </h2>
+https://drive.google.com/file/d/1LEzCGPMM718vFeB9oCEM-H8NxQ2cuWQN/view?usp=sharing
 
 ## About Auction-Sphere
 
 Want to sell something you own in a bidding war? Want to snatch something you really want like a boss?
 Congratulations, you have come to the perfect place: the **Auction Sphere**
 
-<img src="./src/assets/Logo.png" width="400" height="300">
+<img src="./src/assets/logo_new2.png" width="500" height="250">
 
 Auction Sphere is an auctioning system where people can bid on exciting items and also put items up for sale. Every item has a bidding window, and the item goes to the highest bidder by the end of that window.
 
@@ -45,27 +52,19 @@ On the products, people can view all the latest items being put up for sale and 
 
 The `docs` folder incorporates all necessary documents and documentation in our project.
 
+Forntend Documentation:
+Backend Documentation:
+
 ## Tools used
 
-Code formatter: Prettier
+Code formatter: Prettier, Autopep8, EsLint, pylint
 
-Tech stack: React.js, Flask, SQLite
+Tech stack: React.js, Flask, SQLite, python, JavaScript
 
 ## To run our React application
 
-You will need Node.js and NPM installed. You can refer this article if not installed already: https://kinsta.com/blog/how-to-install-node-js/
-
-First, navigate to our application on the terminal and install all the packages using
-`npm i`
-
-In case this throws any error, install the yarn package manager:
-`npm install --global yarn`
-
-And then to install all the packages, run
-`yarn`
-
-Now, to run our application, run
-`npm start`
+Frontend Setup:
+Backend Setup:
 
 ### Code coverage
 
@@ -78,9 +77,16 @@ To run code coverage, just do:
 This will not only give you a detailed report on your terminal, but will also generate a .html file for the reporrt as seen here in our project:
 https://github.com/kartikson1/Auction-Sphere/blob/main/coverage/lcov-report/index.html
 
-## Roadmap
+## Link to Discussion Channel:
 
-We have a lot planned for the future! Completed tasks and future enhancements can be found [here](https://github.com/users/kartikson1/projects/1/views/1)
+https://github.com/LavanyaMiddha/Auction-Sphere-2/discussions
+
+## Support
+
+For Any quesries, please use our discussions channel:
+https://github.com/LavanyaMiddha/Auction-Sphere-2/discussions
+
+or, reach out to any of the group members mentioned below
 
 ## Group-3
 
@@ -89,3 +95,20 @@ We have a lot planned for the future! Completed tasks and future enhancements ca
 [Nayan Taori](https://github.com/NDT2000)
 
 [Prathamesh Thakur](https://github.com/Prathamesh-Thakur)
+
+## Credits:
+
+This project is an extension of the one created before by:
+Mithil Dani
+
+Neha Kale
+
+Rishikesh Yelne
+
+Ritwik Vaidya
+
+Vansh Mehta
+
+Pradyumna Khawas
+
+Link to the project: https://github.com/mithildani/Auction-Sphere
