@@ -88,6 +88,15 @@ function Navv(args) {
                                         Logout
                                     </NavLink>
                                 </NavItem>
+                                <Nav></Nav>
+                                <Nav className="ms-auto">
+                                    <NavLink
+                                        style={{ color: 'white' }}
+                                        href="/profile"
+                                    >
+                                        Profile
+                                    </NavLink>
+                                </Nav>
                             </>
                         ) : (
                             <>

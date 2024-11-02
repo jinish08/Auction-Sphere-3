@@ -1,4 +1,4 @@
-import os
+#import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3
@@ -8,6 +8,8 @@ from datetime import datetime, timedelta
 app = Flask(__name__)
 CORS(app)
 
+
+global_email = None
 
 def create_connection(db_file):
     conn = None
@@ -95,7 +97,9 @@ If the email and password are correct, login is successful else user is asked to
 
 
 @app.route("/login", methods=["POST"])
-def login():
+
+def login(): 
+    global global_email
     email = request.get_json()['email']
     password = request.get_json()['password']
 
@@ -111,7 +115,9 @@ def login():
 
     if (len(result) == 1):
         response["message"] = "Logged in successfully"
-    else:
+
+        global_email = str(email)
+    else: 
         # check if email exists, but password is incorrect
         query = "SELECT COUNT(*) FROM users WHERE email='" + str(email) + "';"
         c.execute(query)
@@ -122,6 +128,92 @@ def login():
             response["message"] = "Please create an account!"
     return jsonify(response)
 
+
+""" 
+API end point for user profile.
+User email is set in the login function which is used here to pull the user stats.
+Page includes information entered by the user i.e first name, last name, contact number and email.
+It also displays the specific product cards for the user. 
+It shows the products the user has put for sale and the products for which the user has submitted a bid.
+"""
+
+@app.route('/profile', methods=["POST"])
+def profile():
+    global global_email
+    
+    # create db connection
+    conn = create_connection(database)
+    c = conn.cursor()
+
+    query = 'SELECT * FROM users WHERE email=\'' + str(global_email) + "\';" 
+    c.execute(query)
+    result = list(c.fetchall())
+
+    query_sell = 'SELECT COUNT(*) FROM product WHERE seller_email=\'' + str(global_email) + '\';'
+    c.execute(query_sell)
+    result_sell = list(c.fetchall())
+
+    query_bid = 'SELECT COUNT(*) FROM bids WHERE email=\'' + str(global_email) + '\';'
+    c.execute(query_bid)
+    result_bid = list(c.fetchall())
+
+    query_sell = 'SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product WHERE seller_email=\'' + str(global_email) + '\'ORDER BY date DESC LIMIT 10;'
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query_sell)
+    products = list(c.fetchall())
+    highestBids = []
+    names = []
+    for product in products: 
+        query = "SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + str(product[0]) +";"
+        c.execute(query)
+        result_bids = list(c.fetchall())
+        if(result_bids[0][0] is not None): 
+            result_bids = result_bids[0]
+            highestBids.append(result_bids[1])
+            query = "SELECT first_name, last_name FROM users WHERE email='" + str(result_bids[0]) +"';"
+            c.execute(query)
+            names.append(list(c.fetchall())[0])
+        else: 
+            highestBids.append(-1)
+            names.append("N/A")
+    
+    query_2 = 'SELECT P.prod_id, P.name, P.seller_email, P.initial_price, P.date, P.increment, P.deadline_date, P.description FROM product P join bids B on P.prod_id = B.prod_id WHERE B.email = \'' + str(global_email) + '\';'
+    print("Query 2:", query_2)
+    c.execute(query_2)
+    bid_products_1 = list(c.fetchall())
+    highest_Bids = []
+    names_bids = []
+
+    for product in bid_products_1:
+        query_products ="SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + str(product[0]) +";"
+        c.execute(query_products)
+        result_bid_products = list(c.fetchall())
+        if(result_bid_products[0][0] is not None): 
+            result_bid_products = result_bid_products[0]
+            highest_Bids.append(result_bid_products[1])
+            query = "SELECT first_name, last_name FROM users WHERE email='" + str(result_bid_products[0]) +"';"
+            c.execute(query)
+            names_bids.append(list(c.fetchall())[0])
+        else: 
+            highest_Bids.append(-1)
+            names_bids.append("N/A")
+
+    response = {}
+    response['first_name'] = result[0][0]
+    response['last_name'] = result[0][1]
+    response['contact_no'] = result[0][2]
+    response['email'] = result[0][3]
+    response['no_products'] = result_sell[0][0]
+    response['no_bids'] = result_bid[0][0]
+    response['products'] = products
+    response['maximum_bids'] = highestBids 
+    response['names'] = names
+    response['bid_products'] = bid_products_1
+    response['bid_bids'] = highest_Bids
+    response['bid_names'] = names_bids
+
+    return jsonify(response)
 
 """
 API end point to create a new bid.
@@ -322,6 +414,7 @@ def get_landing_page():
     c = conn.cursor()
     c.execute(query)
     products = list(c.fetchall())
+    print("Products got:", products)
     highestBids = []
     names = []
     for product in products:
@@ -329,6 +422,9 @@ def get_landing_page():
             str(product[0]) + ";"
         c.execute(query)
         result = list(c.fetchall())
+        print("Results got:", result)
+        print("\n0", result[0])
+        print("\n0,0", result[0][0])
         if (result[0][0] is not None):
             result = result[0]
             highestBids.append(result[1])
