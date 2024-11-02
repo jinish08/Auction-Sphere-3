@@ -12,12 +12,12 @@ jest.mock('react-toastify', () => ({
 }))
 
 // Mock data
-const productName =  'Chair'
-const initialPrice =  '100'
-const increment =  '20'
-const datePosted =  Date.now()
+const productName = 'Chair'
+const initialPrice = '100'
+const increment = '20'
+const datePosted = Date.now()
 const description = 'Nice'
-const biddingTime =  '2'
+const biddingTime = '2'
 
 describe('Product information', () => {
     beforeEach(() => {
