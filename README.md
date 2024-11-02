@@ -16,7 +16,10 @@ Repository for CSC 510 Software Engineering project 2, created by Group : Lavany
 
 Click on the image below to view the demo video of the project
 
-<h2>Demo Video of the project</h2>
+<h2>Demo Video of the previous project</h2>
+https://drive.google.com/file/d/1md_n8eUBSGGTeWp78R8wSBhKQ9uqrqb5/view?usp=sharing
+
+<h2>Demo Video of the improved project</h2>
 https://drive.google.com/file/d/1-1IImCdds80cHaB8_4Agh7kr-HKMnpRh/view?usp=sharing
 
 <h2> Animated Video on Auction Sphere </h2>
