@@ -97,6 +97,10 @@ const Login = () => {
                                         value={formData.password}
                                         onChange={(e) => handleChange(e)}
                                     />
+                                    <br></br>
+                                    <a href="/forgotPassword">
+                                        <b>Forgot Password?</b>
+                                    </a>
                                 </FormGroup>
                                 <Button color="primary">Submit</Button>
                             </Form>

@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 const fields = [
     { field_label: 'First Name', node_name: 'firstName' },
     { field_label: 'Last Name', node_name: 'lastName' },
-    { field_label: 'Contact', node_name: 'contact' },
+    { field_label: 'Contact Number', node_name: 'contact' },
     { field_label: 'Email', node_name: 'email' },
     { field_label: 'Password', node_name: 'password' },
     { field_label: 'Confirm Password', node_name: 'confirmPassword' },

@@ -88,7 +88,7 @@ const Signup = () => {
                                             <Input
                                                 id="FirstName"
                                                 name="firstName"
-                                                placeholder="Your good name, sir?"
+                                                placeholder="Your first name"
                                                 type="text"
                                                 value={formData.firstName}
                                                 onChange={(e) =>
@@ -112,11 +112,13 @@ const Signup = () => {
                                             />
                                         </FormGroup>
                                         <FormGroup>
-                                            <Label for="Contact">Contact</Label>
+                                            <Label for="Contact">
+                                                Contact Number
+                                            </Label>
                                             <Input
                                                 id="Contact"
                                                 name="contact"
-                                                placeholder="Just for our records, we're not asking you out *yet* :)"
+                                                placeholder="Phone Number"
                                                 type="text"
                                                 value={formData.contact}
                                                 onChange={(e) =>
@@ -129,7 +131,7 @@ const Signup = () => {
                                             <Input
                                                 id="Email"
                                                 name="email"
-                                                placeholder="We solemnly swear we are up to no spamming :)"
+                                                placeholder="abc@gamil.com"
                                                 type="email"
                                                 value={formData.email}
                                                 onChange={(e) =>
@@ -155,7 +157,7 @@ const Signup = () => {
                                             <Input
                                                 id="Password"
                                                 name="password"
-                                                placeholder="Type your crush's name here 👀"
+                                                placeholder="Password"
                                                 type="password"
                                                 value={formData.password}
                                                 onChange={(e) =>
@@ -170,7 +172,7 @@ const Signup = () => {
                                             <Input
                                                 id="ConfirmPassword"
                                                 name="confirmPassword"
-                                                placeholder="Confirm your crush ;)"
+                                                placeholder="Confirm Password"
                                                 type="password"
                                                 value={formData.confirmPassword}
                                                 onChange={(e) =>
