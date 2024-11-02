@@ -5,7 +5,7 @@ const fields = ['Loading data...']
 
 test.each(fields)('Rendering the profile page', (field) => {
     render(
-        <Router> 
+        <Router>
             <Profile />
         </Router>
     )
