@@ -16,7 +16,7 @@ Repository for CSC 510 Software Engineering project 2, created by Group : Lavany
 
 Click on the image below to view the demo video of the project
 
-<h2>Demo Vidoe of the project</h2>
+<h2>Demo Video of the project</h2>
 https://drive.google.com/file/d/1-1IImCdds80cHaB8_4Agh7kr-HKMnpRh/view?usp=sharing
 
 <h2> Animated Video on Auction Sphere </h2>
@@ -27,7 +27,7 @@ https://drive.google.com/file/d/1LEzCGPMM718vFeB9oCEM-H8NxQ2cuWQN/view?usp=shari
 Want to sell something you own in a bidding war? Want to snatch something you really want like a boss?
 Congratulations, you have come to the perfect place: the **Auction Sphere**
 
-<img src="./src/assets/Logo.png" width="400" height="300">
+<img src="./src/assets/logo_new2.png" width="500" height="250">
 
 Auction Sphere is an auctioning system where people can bid on exciting items and also put items up for sale. Every item has a bidding window, and the item goes to the highest bidder by the end of that window.
 
