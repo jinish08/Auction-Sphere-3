@@ -98,7 +98,9 @@ const Login = () => {
                                         onChange={(e) => handleChange(e)}
                                     />
                                     <br></br>
-                                    <a href="/forgotPassword"><b>Forgot Password?</b></a>
+                                    <a href="/forgotPassword">
+                                        <b>Forgot Password?</b>
+                                    </a>
                                 </FormGroup>
                                 <Button color="primary">Submit</Button>
                             </Form>

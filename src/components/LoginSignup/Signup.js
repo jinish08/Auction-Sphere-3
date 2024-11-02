@@ -112,7 +112,9 @@ const Signup = () => {
                                             />
                                         </FormGroup>
                                         <FormGroup>
-                                            <Label for="Contact">Contact Number</Label>
+                                            <Label for="Contact">
+                                                Contact Number
+                                            </Label>
                                             <Input
                                                 id="Contact"
                                                 name="contact"
