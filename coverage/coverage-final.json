@@ -1,6 +1,6 @@
 {
-    "C:\\SE_Projects\\Auction-Sphere-2\\src\\App.js": {
-        "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\App.js",
+    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\App.js": {
+        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\App.js",
         "statementMap": {
             "0": {
                 "start": { "line": 16, "column": 4 },
@@ -26,8 +26,8 @@
         "f": { "0": 0 },
         "b": {}
     },
-    "C:\\SE_Projects\\Auction-Sphere-2\\src\\global.js": {
-        "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\global.js",
+    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\global.js": {
+        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\global.js",
         "statementMap": {
             "0": {
                 "start": { "line": 1, "column": 12 },
@@ -36,14 +36,14 @@
         },
         "fnMap": {},
         "branchMap": {},
-        "s": { "0": 6 },
+        "s": { "0": 7 },
         "f": {},
         "b": {},
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-        "hash": "d4a38bcc6fa5b426df30b310c1517aa921528098"
+        "hash": "79a571ed8b2d5d2cd1c550f83fe38826c7f930a1"
     },
-    "C:\\SE_Projects\\Auction-Sphere-2\\src\\index.js": {
-        "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\index.js",
+    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\index.js": {
+        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\index.js",
         "statementMap": {
             "0": {
                 "start": { "line": 8, "column": 13 },
@@ -64,8 +64,8 @@
         "f": {},
         "b": {}
     },
-    "C:\\SE_Projects\\Auction-Sphere-2\\src\\reportWebVitals.js": {
-        "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\reportWebVitals.js",
+    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\reportWebVitals.js": {
+        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\reportWebVitals.js",
         "statementMap": {
             "0": {
                 "start": { "line": 1, "column": 24 },
@@ -165,8 +165,8 @@
         "f": { "0": 0, "1": 0 },
         "b": { "0": [0, 0], "1": [0, 0] }
     },
-    "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\About.js": {
-        "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\About.js",
+    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\About.js": {
+        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\About.js",
         "statementMap": {
             "0": {
                 "start": { "line": 20, "column": 14 },
@@ -196,10 +196,10 @@
         "f": { "0": 5 },
         "b": {},
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-        "hash": "0eddd45c8ded17869a9cbcbc098323330a7d6cee"
+        "hash": "7d19782da5317b18fe78c025e7c0d32428154fb1"
     },
-    "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\AddBid.js": {
-        "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\AddBid.js",
+    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\AddBid.js": {
+        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\AddBid.js",
         "statementMap": {
             "0": {
                 "start": { "line": 12, "column": 15 },
@@ -392,7 +392,7 @@
         "f": { "0": 8, "1": 3, "2": 2, "3": 3 },
         "b": { "0": [2, 0], "1": [2, 0] },
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-        "hash": "3af62677fb9b4ae71f8530b25d96ece7e5881a08"
+        "hash": "92950f87ba7f864b9a3b5cd945168a1747d56b81"
     },
     "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Countdown.js": {
         "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Countdown.js",
@@ -620,10 +620,10 @@
         "f": { "0": 17 },
         "b": {},
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-        "hash": "30fd42bf4344ca90f7a124fbd3560a5755c13295"
+        "hash": "ae79ab5d5fae02136975737a41a81706836c3650"
     },
-    "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Navv.js": {
-        "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Navv.js",
+    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\Navv.js": {
+        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\Navv.js",
         "statementMap": {
             "0": {
                 "start": { "line": 24, "column": 32 },
@@ -733,23 +733,23 @@
             }
         },
         "s": {
-            "0": 45,
-            "1": 45,
+            "0": 47,
+            "1": 47,
             "2": 0,
-            "3": 45,
+            "3": 47,
             "4": 0,
             "5": 0,
             "6": 0,
-            "7": 45,
+            "7": 47,
             "8": 0
         },
-        "f": { "0": 45, "1": 0, "2": 0, "3": 0 },
-        "b": { "0": [8, 37] },
+        "f": { "0": 47, "1": 0, "2": 0, "3": 0 },
+        "b": { "0": [8, 39] },
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
         "hash": "9d7ce76f638da617809bcc6d442a54788a97bbf2"
     },
-    "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\ProductCard.js": {
-        "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\ProductCard.js",
+    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\ProductCard.js": {
+        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\ProductCard.js",
         "statementMap": {
             "0": {
                 "start": { "line": 21, "column": 20 },
@@ -864,26 +864,26 @@
         },
         "s": {
             "0": 2,
-            "1": 4,
-            "2": 4,
-            "3": 4,
-            "4": 4,
-            "5": 4,
-            "6": 4,
-            "7": 4,
+            "1": 2,
+            "2": 2,
+            "3": 2,
+            "4": 2,
+            "5": 2,
+            "6": 2,
+            "7": 2,
             "8": 2,
-            "9": 4,
-            "10": 4,
-            "11": 4,
+            "9": 2,
+            "10": 2,
+            "11": 2,
             "12": 2
         },
-        "f": { "0": 4, "1": 4, "2": 4 },
-        "b": { "0": [1, 3] },
+        "f": { "0": 2, "1": 2, "2": 2 },
+        "b": { "0": [0, 2] },
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-        "hash": "e5f0aa4f0c1f1e5e034c57a0cbf5659c76492db5"
+        "hash": "2abe99861da38e6a6278c1ae40382c6dd892ece5"
     },
-    "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\ProductDetails.js": {
-        "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\ProductDetails.js",
+    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\ProductDetails.js": {
+        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\ProductDetails.js",
         "statementMap": {
             "0": {
                 "start": { "line": 16, "column": 4 },
@@ -1207,8 +1207,8 @@
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
         "hash": "26c757a31258c5379d453ea8110c3bdd5133e2be"
     },
-    "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\ProductView.js": {
-        "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\ProductView.js",
+    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\ProductView.js": {
+        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\ProductView.js",
         "statementMap": {},
         "fnMap": {},
         "branchMap": {},
@@ -1216,10 +1216,10 @@
         "f": {},
         "b": {},
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-        "hash": "632a40500a7083b00235cc0526bf9da1a88d1341"
+        "hash": "11bd2332dad4e036c55b47a6395f7b0c6f8f3ced"
     },
-    "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Products.js": {
-        "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Products.js",
+    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\Products.js": {
+        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\Products.js",
         "statementMap": {
             "0": {
                 "start": { "line": 14, "column": 17 },
@@ -1380,7 +1380,7 @@
         "f": { "0": 5, "1": 3, "2": 3, "3": 2 },
         "b": { "0": [1, 3], "1": [4, 4] },
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-        "hash": "fa1719199b03aa9d9aca4a28dccf92a22938647d"
+        "hash": "f0d499b107402c4303900c73d34e8ec66ff8cc46"
     },
     "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Profile.js": {
         "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Profile.js",
@@ -1978,7 +1978,7 @@
             }
         },
         "s": {
-            "0": 0,
+            "0": 1,
             "1": 0,
             "2": 0,
             "3": 0,
@@ -1986,12 +1986,12 @@
             "5": 0,
             "6": 0,
             "7": 0,
-            "8": 0,
-            "9": 0,
-            "10": 0,
-            "11": 0,
+            "8": 1,
+            "9": 2,
+            "10": 1,
+            "11": 1,
             "12": 0,
-            "13": 0,
+            "13": 1,
             "14": 0,
             "15": 0,
             "16": 0,
@@ -2006,8 +2006,8 @@
             "25": 0,
             "26": 0,
             "27": 0,
-            "28": 0,
-            "29": 0,
+            "28": 1,
+            "29": 1,
             "30": 0,
             "31": 0,
             "32": 0,
@@ -2015,7 +2015,7 @@
             "34": 0,
             "35": 0,
             "36": 0,
-            "37": 0,
+            "37": 1,
             "38": 0,
             "39": 0,
             "40": 0,
@@ -2028,7 +2028,7 @@
             "1": 0,
             "2": 0,
             "3": 0,
-            "4": 0,
+            "4": 2,
             "5": 0,
             "6": 0,
             "7": 0,
@@ -2039,10 +2039,12 @@
             "12": 0,
             "13": 0
         },
-        "b": { "0": [0, 0] }
+        "b": { "0": [0, 0] },
+        "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+        "hash": "c6d153a925ef3552348e923e20e37d4b95072fa3"
     },
-    "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\LoginSignup\\Login.js": {
-        "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\LoginSignup\\Login.js",
+    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\LoginSignup\\Login.js": {
+        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\LoginSignup\\Login.js",
         "statementMap": {
             "0": {
                 "start": { "line": 24, "column": 14 },
@@ -2244,8 +2246,8 @@
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
         "hash": "054063395c18f584c96e22a535520db9a958fcb2"
     },
-    "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\LoginSignup\\Signup.js": {
-        "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\LoginSignup\\Signup.js",
+    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\LoginSignup\\Signup.js": {
+        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\LoginSignup\\Signup.js",
         "statementMap": {
             "0": {
                 "start": { "line": 25, "column": 15 },
