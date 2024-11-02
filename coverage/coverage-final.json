@@ -394,10 +394,6 @@
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
         "hash": "92950f87ba7f864b9a3b5cd945168a1747d56b81"
     },
-<<<<<<< HEAD
-    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\Footer.js": {
-        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\Footer.js",
-=======
     "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Countdown.js": {
         "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Countdown.js",
         "statementMap": {
@@ -595,7 +591,6 @@
     },
     "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Footer.js": {
         "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Footer.js",
->>>>>>> main
         "statementMap": {
             "0": {
                 "start": { "line": 7, "column": 15 },
@@ -621,13 +616,8 @@
             }
         },
         "branchMap": {},
-<<<<<<< HEAD
-        "s": { "0": 7, "1": 19 },
-        "f": { "0": 19 },
-=======
         "s": { "0": 4, "1": 17 },
         "f": { "0": 17 },
->>>>>>> main
         "b": {},
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
         "hash": "ae79ab5d5fae02136975737a41a81706836c3650"
@@ -756,11 +746,7 @@
         "f": { "0": 47, "1": 0, "2": 0, "3": 0 },
         "b": { "0": [8, 39] },
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-<<<<<<< HEAD
-        "hash": "9c8138e9f2efe7150fc7683bd32453b5c141cacb"
-=======
         "hash": "9d7ce76f638da617809bcc6d442a54788a97bbf2"
->>>>>>> main
     },
     "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\ProductCard.js": {
         "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\ProductCard.js",
@@ -900,90 +886,6 @@
         "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\ProductDetails.js",
         "statementMap": {
             "0": {
-<<<<<<< HEAD
-                "start": { "line": 16, "column": 23 },
-                "end": { "line": 146, "column": 1 }
-            },
-            "1": {
-                "start": { "line": 17, "column": 17 },
-                "end": { "line": 17, "column": 28 }
-            },
-            "2": {
-                "start": { "line": 18, "column": 40 },
-                "end": { "line": 18, "column": 55 }
-            },
-            "3": {
-                "start": { "line": 19, "column": 40 },
-                "end": { "line": 19, "column": 55 }
-            },
-            "4": {
-                "start": { "line": 20, "column": 28 },
-                "end": { "line": 20, "column": 40 }
-            },
-            "5": {
-                "start": { "line": 21, "column": 34 },
-                "end": { "line": 21, "column": 48 }
-            },
-            "6": {
-                "start": { "line": 22, "column": 30 },
-                "end": { "line": 33, "column": 5 }
-            },
-            "7": {
-                "start": { "line": 23, "column": 8 },
-                "end": { "line": 32, "column": 9 }
-            },
-            "8": {
-                "start": { "line": 24, "column": 23 },
-                "end": { "line": 26, "column": 14 }
-            },
-            "9": {
-                "start": { "line": 27, "column": 12 },
-                "end": { "line": 27, "column": 29 }
-            },
-            "10": {
-                "start": { "line": 28, "column": 12 },
-                "end": { "line": 28, "column": 35 }
-            },
-            "11": {
-                "start": { "line": 29, "column": 12 },
-                "end": { "line": 29, "column": 44 }
-            },
-            "12": {
-                "start": { "line": 31, "column": 12 },
-                "end": { "line": 31, "column": 47 }
-            },
-            "13": {
-                "start": { "line": 34, "column": 4 },
-                "end": { "line": 41, "column": 10 }
-            },
-            "14": {
-                "start": { "line": 35, "column": 8 },
-                "end": { "line": 35, "column": 27 }
-            },
-            "15": {
-                "start": { "line": 36, "column": 8 },
-                "end": { "line": 40, "column": 9 }
-            },
-            "16": {
-                "start": { "line": 37, "column": 12 },
-                "end": { "line": 39, "column": 13 }
-            },
-            "17": {
-                "start": { "line": 38, "column": 16 },
-                "end": { "line": 38, "column": 35 }
-            },
-            "18": {
-                "start": { "line": 42, "column": 4 },
-                "end": { "line": 145, "column": 5 }
-            },
-            "19": {
-                "start": { "line": 104, "column": 44 },
-                "end": { "line": 110, "column": 50 }
-            },
-            "20": {
-                "start": { "line": 121, "column": 48 },
-                "end": { "line": 121, "column": 74 }
-=======
                 "start": { "line": 16, "column": 4 },
                 "end": { "line": 16, "column": 30 }
             },
@@ -1070,23 +972,12 @@
             "21": {
                 "start": { "line": 128, "column": 48 },
                 "end": { "line": 128, "column": 74 }
->>>>>>> main
             }
         },
         "fnMap": {
             "0": {
                 "name": "calcDate",
                 "decl": {
-<<<<<<< HEAD
-                    "start": { "line": 16, "column": 23 },
-                    "end": { "line": 16, "column": 24 }
-                },
-                "loc": {
-                    "start": { "line": 16, "column": 29 },
-                    "end": { "line": 146, "column": 1 }
-                },
-                "line": 16
-=======
                     "start": { "line": 15, "column": 9 },
                     "end": { "line": 15, "column": 17 }
                 },
@@ -1095,21 +986,10 @@
                     "end": { "line": 17, "column": 1 }
                 },
                 "line": 15
->>>>>>> main
             },
             "1": {
                 "name": "(anonymous_1)",
                 "decl": {
-<<<<<<< HEAD
-                    "start": { "line": 22, "column": 30 },
-                    "end": { "line": 22, "column": 31 }
-                },
-                "loc": {
-                    "start": { "line": 22, "column": 42 },
-                    "end": { "line": 33, "column": 5 }
-                },
-                "line": 22
-=======
                     "start": { "line": 18, "column": 23 },
                     "end": { "line": 18, "column": 24 }
                 },
@@ -1118,21 +998,10 @@
                     "end": { "line": 153, "column": 1 }
                 },
                 "line": 18
->>>>>>> main
             },
             "2": {
                 "name": "(anonymous_2)",
                 "decl": {
-<<<<<<< HEAD
-                    "start": { "line": 34, "column": 14 },
-                    "end": { "line": 34, "column": 15 }
-                },
-                "loc": {
-                    "start": { "line": 34, "column": 20 },
-                    "end": { "line": 41, "column": 5 }
-                },
-                "line": 34
-=======
                     "start": { "line": 24, "column": 30 },
                     "end": { "line": 24, "column": 31 }
                 },
@@ -1141,21 +1010,10 @@
                     "end": { "line": 35, "column": 5 }
                 },
                 "line": 24
->>>>>>> main
             },
             "3": {
                 "name": "(anonymous_3)",
                 "decl": {
-<<<<<<< HEAD
-                    "start": { "line": 103, "column": 50 },
-                    "end": { "line": 103, "column": 51 }
-                },
-                "loc": {
-                    "start": { "line": 104, "column": 44 },
-                    "end": { "line": 110, "column": 50 }
-                },
-                "line": 104
-=======
                     "start": { "line": 36, "column": 14 },
                     "end": { "line": 36, "column": 15 }
                 },
@@ -1164,21 +1022,10 @@
                     "end": { "line": 43, "column": 5 }
                 },
                 "line": 36
->>>>>>> main
             },
             "4": {
                 "name": "(anonymous_4)",
                 "decl": {
-<<<<<<< HEAD
-                    "start": { "line": 120, "column": 53 },
-                    "end": { "line": 120, "column": 54 }
-                },
-                "loc": {
-                    "start": { "line": 121, "column": 48 },
-                    "end": { "line": 121, "column": 74 }
-                },
-                "line": 121
-=======
                     "start": { "line": 110, "column": 50 },
                     "end": { "line": 110, "column": 51 }
                 },
@@ -1199,36 +1046,17 @@
                     "end": { "line": 128, "column": 74 }
                 },
                 "line": 128
->>>>>>> main
             }
         },
         "branchMap": {
             "0": {
                 "loc": {
-<<<<<<< HEAD
-                    "start": { "line": 36, "column": 8 },
-                    "end": { "line": 40, "column": 9 }
-=======
                     "start": { "line": 38, "column": 8 },
                     "end": { "line": 42, "column": 9 }
->>>>>>> main
                 },
                 "type": "if",
                 "locations": [
                     {
-<<<<<<< HEAD
-                        "start": { "line": 36, "column": 8 },
-                        "end": { "line": 40, "column": 9 }
-                    },
-                    { "start": {}, "end": {} }
-                ],
-                "line": 36
-            },
-            "1": {
-                "loc": {
-                    "start": { "line": 37, "column": 12 },
-                    "end": { "line": 39, "column": 13 }
-=======
                         "start": { "line": 38, "column": 8 },
                         "end": { "line": 42, "column": 9 }
                     },
@@ -1240,24 +1068,10 @@
                 "loc": {
                     "start": { "line": 39, "column": 12 },
                     "end": { "line": 41, "column": 13 }
->>>>>>> main
                 },
                 "type": "if",
                 "locations": [
                     {
-<<<<<<< HEAD
-                        "start": { "line": 37, "column": 12 },
-                        "end": { "line": 39, "column": 13 }
-                    },
-                    { "start": {}, "end": {} }
-                ],
-                "line": 37
-            },
-            "2": {
-                "loc": {
-                    "start": { "line": 66, "column": 21 },
-                    "end": { "line": 141, "column": 21 }
-=======
                         "start": { "line": 39, "column": 12 },
                         "end": { "line": 41, "column": 13 }
                     },
@@ -1269,27 +1083,10 @@
                 "loc": {
                     "start": { "line": 68, "column": 21 },
                     "end": { "line": 148, "column": 21 }
->>>>>>> main
                 },
                 "type": "binary-expr",
                 "locations": [
                     {
-<<<<<<< HEAD
-                        "start": { "line": 66, "column": 21 },
-                        "end": { "line": 66, "column": 28 }
-                    },
-                    {
-                        "start": { "line": 67, "column": 24 },
-                        "end": { "line": 140, "column": 30 }
-                    }
-                ],
-                "line": 66
-            },
-            "3": {
-                "loc": {
-                    "start": { "line": 100, "column": 33 },
-                    "end": { "line": 115, "column": 33 }
-=======
                         "start": { "line": 68, "column": 21 },
                         "end": { "line": 68, "column": 28 }
                     },
@@ -1304,27 +1101,10 @@
                 "loc": {
                     "start": { "line": 107, "column": 33 },
                     "end": { "line": 122, "column": 33 }
->>>>>>> main
                 },
                 "type": "cond-expr",
                 "locations": [
                     {
-<<<<<<< HEAD
-                        "start": { "line": 101, "column": 36 },
-                        "end": { "line": 112, "column": 39 }
-                    },
-                    {
-                        "start": { "line": 114, "column": 36 },
-                        "end": { "line": 114, "column": 59 }
-                    }
-                ],
-                "line": 100
-            },
-            "4": {
-                "loc": {
-                    "start": { "line": 116, "column": 33 },
-                    "end": { "line": 138, "column": 33 }
-=======
                         "start": { "line": 108, "column": 36 },
                         "end": { "line": 119, "column": 39 }
                     },
@@ -1339,27 +1119,10 @@
                 "loc": {
                     "start": { "line": 123, "column": 33 },
                     "end": { "line": 145, "column": 33 }
->>>>>>> main
                 },
                 "type": "binary-expr",
                 "locations": [
                     {
-<<<<<<< HEAD
-                        "start": { "line": 116, "column": 33 },
-                        "end": { "line": 116, "column": 43 }
-                    },
-                    {
-                        "start": { "line": 117, "column": 36 },
-                        "end": { "line": 137, "column": 39 }
-                    }
-                ],
-                "line": 116
-            },
-            "5": {
-                "loc": {
-                    "start": { "line": 124, "column": 45 },
-                    "end": { "line": 128, "column": 45 }
-=======
                         "start": { "line": 123, "column": 33 },
                         "end": { "line": 123, "column": 43 }
                     },
@@ -1374,27 +1137,10 @@
                 "loc": {
                     "start": { "line": 131, "column": 45 },
                     "end": { "line": 135, "column": 45 }
->>>>>>> main
                 },
                 "type": "cond-expr",
                 "locations": [
                     {
-<<<<<<< HEAD
-                        "start": { "line": 125, "column": 48 },
-                        "end": { "line": 125, "column": 62 }
-                    },
-                    {
-                        "start": { "line": 127, "column": 48 },
-                        "end": { "line": 127, "column": 62 }
-                    }
-                ],
-                "line": 124
-            },
-            "6": {
-                "loc": {
-                    "start": { "line": 131, "column": 41 },
-                    "end": { "line": 136, "column": 41 }
-=======
                         "start": { "line": 132, "column": 48 },
                         "end": { "line": 132, "column": 62 }
                     },
@@ -1409,22 +1155,10 @@
                 "loc": {
                     "start": { "line": 138, "column": 41 },
                     "end": { "line": 143, "column": 41 }
->>>>>>> main
                 },
                 "type": "binary-expr",
                 "locations": [
                     {
-<<<<<<< HEAD
-                        "start": { "line": 131, "column": 41 },
-                        "end": { "line": 131, "column": 51 }
-                    },
-                    {
-                        "start": { "line": 132, "column": 44 },
-                        "end": { "line": 135, "column": 46 }
-                    }
-                ],
-                "line": 131
-=======
                         "start": { "line": 138, "column": 41 },
                         "end": { "line": 138, "column": 51 }
                     },
@@ -1434,7 +1168,6 @@
                     }
                 ],
                 "line": 138
->>>>>>> main
             }
         },
         "s": {
@@ -1472,11 +1205,7 @@
             "6": [3, 1]
         },
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-<<<<<<< HEAD
-        "hash": "20ea520e2ff7a1749a20c55b1474ee438cfe1097"
-=======
         "hash": "26c757a31258c5379d453ea8110c3bdd5133e2be"
->>>>>>> main
     },
     "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\ProductView.js": {
         "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\ProductView.js",
@@ -1653,13 +1382,8 @@
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
         "hash": "f0d499b107402c4303900c73d34e8ec66ff8cc46"
     },
-<<<<<<< HEAD
-    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\Profile.js": {
-        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\Profile.js",
-=======
     "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Profile.js": {
         "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Profile.js",
->>>>>>> main
         "statementMap": {
             "0": {
                 "start": { "line": 10, "column": 16 },
@@ -1706,21 +1430,12 @@
                 "end": { "line": 174, "column": 5 }
             },
             "11": {
-<<<<<<< HEAD
-                "start": { "line": 131, "column": 40 },
-                "end": { "line": 136, "column": 42 }
-            },
-            "12": {
-                "start": { "line": 155, "column": 40 },
-                "end": { "line": 160, "column": 42 }
-=======
                 "start": { "line": 132, "column": 40 },
                 "end": { "line": 137, "column": 42 }
             },
             "12": {
                 "start": { "line": 156, "column": 40 },
                 "end": { "line": 161, "column": 42 }
->>>>>>> main
             }
         },
         "fnMap": {
@@ -1763,16 +1478,6 @@
             "3": {
                 "name": "(anonymous_3)",
                 "decl": {
-<<<<<<< HEAD
-                    "start": { "line": 130, "column": 54 },
-                    "end": { "line": 130, "column": 55 }
-                },
-                "loc": {
-                    "start": { "line": 131, "column": 40 },
-                    "end": { "line": 136, "column": 42 }
-                },
-                "line": 131
-=======
                     "start": { "line": 131, "column": 54 },
                     "end": { "line": 131, "column": 55 }
                 },
@@ -1781,21 +1486,10 @@
                     "end": { "line": 137, "column": 42 }
                 },
                 "line": 132
->>>>>>> main
             },
             "4": {
                 "name": "(anonymous_4)",
                 "decl": {
-<<<<<<< HEAD
-                    "start": { "line": 154, "column": 58 },
-                    "end": { "line": 154, "column": 59 }
-                },
-                "loc": {
-                    "start": { "line": 155, "column": 40 },
-                    "end": { "line": 160, "column": 42 }
-                },
-                "line": 155
-=======
                     "start": { "line": 155, "column": 58 },
                     "end": { "line": 155, "column": 59 }
                 },
@@ -1804,39 +1498,17 @@
                     "end": { "line": 161, "column": 42 }
                 },
                 "line": 156
->>>>>>> main
             }
         },
         "branchMap": {
             "0": {
                 "loc": {
-<<<<<<< HEAD
-                    "start": { "line": 39, "column": 21 },
-                    "end": { "line": 169, "column": 21 }
-=======
                     "start": { "line": 40, "column": 21 },
                     "end": { "line": 170, "column": 21 }
->>>>>>> main
                 },
                 "type": "cond-expr",
                 "locations": [
                     {
-<<<<<<< HEAD
-                        "start": { "line": 40, "column": 24 },
-                        "end": { "line": 166, "column": 27 }
-                    },
-                    {
-                        "start": { "line": 168, "column": 24 },
-                        "end": { "line": 168, "column": 46 }
-                    }
-                ],
-                "line": 39
-            },
-            "1": {
-                "loc": {
-                    "start": { "line": 129, "column": 33 },
-                    "end": { "line": 140, "column": 33 }
-=======
                         "start": { "line": 41, "column": 24 },
                         "end": { "line": 167, "column": 27 }
                     },
@@ -1851,27 +1523,10 @@
                 "loc": {
                     "start": { "line": 130, "column": 33 },
                     "end": { "line": 141, "column": 33 }
->>>>>>> main
                 },
                 "type": "cond-expr",
                 "locations": [
                     {
-<<<<<<< HEAD
-                        "start": { "line": 130, "column": 36 },
-                        "end": { "line": 137, "column": 38 }
-                    },
-                    {
-                        "start": { "line": 139, "column": 36 },
-                        "end": { "line": 139, "column": 64 }
-                    }
-                ],
-                "line": 129
-            },
-            "2": {
-                "loc": {
-                    "start": { "line": 129, "column": 33 },
-                    "end": { "line": 129, "column": 54 }
-=======
                         "start": { "line": 131, "column": 36 },
                         "end": { "line": 138, "column": 38 }
                     },
@@ -1886,27 +1541,10 @@
                 "loc": {
                     "start": { "line": 130, "column": 33 },
                     "end": { "line": 130, "column": 54 }
->>>>>>> main
                 },
                 "type": "binary-expr",
                 "locations": [
                     {
-<<<<<<< HEAD
-                        "start": { "line": 129, "column": 33 },
-                        "end": { "line": 129, "column": 37 }
-                    },
-                    {
-                        "start": { "line": 129, "column": 41 },
-                        "end": { "line": 129, "column": 54 }
-                    }
-                ],
-                "line": 129
-            },
-            "3": {
-                "loc": {
-                    "start": { "line": 153, "column": 33 },
-                    "end": { "line": 164, "column": 33 }
-=======
                         "start": { "line": 130, "column": 33 },
                         "end": { "line": 130, "column": 37 }
                     },
@@ -1921,27 +1559,10 @@
                 "loc": {
                     "start": { "line": 154, "column": 33 },
                     "end": { "line": 165, "column": 33 }
->>>>>>> main
                 },
                 "type": "cond-expr",
                 "locations": [
                     {
-<<<<<<< HEAD
-                        "start": { "line": 154, "column": 36 },
-                        "end": { "line": 161, "column": 38 }
-                    },
-                    {
-                        "start": { "line": 163, "column": 36 },
-                        "end": { "line": 163, "column": 64 }
-                    }
-                ],
-                "line": 153
-            },
-            "4": {
-                "loc": {
-                    "start": { "line": 153, "column": 33 },
-                    "end": { "line": 153, "column": 58 }
-=======
                         "start": { "line": 155, "column": 36 },
                         "end": { "line": 162, "column": 38 }
                     },
@@ -1956,52 +1577,10 @@
                 "loc": {
                     "start": { "line": 154, "column": 33 },
                     "end": { "line": 154, "column": 58 }
->>>>>>> main
                 },
                 "type": "binary-expr",
                 "locations": [
                     {
-<<<<<<< HEAD
-                        "start": { "line": 153, "column": 33 },
-                        "end": { "line": 153, "column": 37 }
-                    },
-                    {
-                        "start": { "line": 153, "column": 41 },
-                        "end": { "line": 153, "column": 58 }
-                    }
-                ],
-                "line": 153
-            }
-        },
-        "s": {
-            "0": 1,
-            "1": 1,
-            "2": 1,
-            "3": 1,
-            "4": 1,
-            "5": 1,
-            "6": 0,
-            "7": 0,
-            "8": 0,
-            "9": 1,
-            "10": 1,
-            "11": 0,
-            "12": 0
-        },
-        "f": { "0": 1, "1": 1, "2": 1, "3": 0, "4": 0 },
-        "b": {
-            "0": [0, 1],
-            "1": [0, 0],
-            "2": [0, 0],
-            "3": [0, 0],
-            "4": [0, 0]
-        },
-        "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-        "hash": "f503bc97d6e379e4d410502f202f5923b307049d"
-    },
-    "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\Sell.js": {
-        "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\Sell.js",
-=======
                         "start": { "line": 154, "column": 33 },
                         "end": { "line": 154, "column": 37 }
                     },
@@ -2033,7 +1612,6 @@
     },
     "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Sell.js": {
         "path": "C:\\SE_Projects\\Auction-Sphere-2\\src\\components\\Sell.js",
->>>>>>> main
         "statementMap": {
             "0": {
                 "start": { "line": 11, "column": 17 },
@@ -2666,11 +2244,7 @@
         "f": { "0": 5, "1": 0, "2": 0, "3": 0, "4": 0 },
         "b": { "0": [0, 0] },
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-<<<<<<< HEAD
-        "hash": "8826af6163dee5c9821e39c2d6422ac642a9e2fb"
-=======
         "hash": "054063395c18f584c96e22a535520db9a958fcb2"
->>>>>>> main
     },
     "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\LoginSignup\\Signup.js": {
         "path": "C:\\Users\\Asus\\Desktop\\NCSU study material\\First year\\Semester 1\\Software engineering\\Project 2\\Auction-Sphere-2\\src\\components\\LoginSignup\\Signup.js",
@@ -2954,10 +2528,6 @@
         },
         "b": { "0": [0, 0], "1": [0, 12] },
         "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-<<<<<<< HEAD
-        "hash": "82ba6ceb9b9faf8a20596f99db502345479d4fd1"
-=======
         "hash": "91a65965f11ffd6bb9722057c6c64b46fb2b7ff6"
->>>>>>> main
     }
 }
