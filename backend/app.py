@@ -274,13 +274,16 @@ def create_product():
     increment = request.get_json()['increment']
     photo = request.get_json()['photo']
     description = request.get_json()['description']
-
+    biddingtime = request.get_json()['biddingTime']
     conn = create_connection(database)
     c = conn.cursor()
     response = {}
-    currentTime = int(datetime.utcnow().timestamp())
-    currentTime = datetime.fromtimestamp(currentTime)
-    deadlineDate = currentTime + timedelta(days=7)
+    currentdatetime = datetime.now()
+    formatted_date = currentdatetime.strftime('%Y-%m-%d %H:%M:%S')
+    parsed_date = datetime.strptime(formatted_date, '%Y-%m-%d %H:%M:%S')
+    print(type(currentdatetime))
+    print(type(biddingtime))
+    deadlineDate = parsed_date + timedelta(days=int(biddingtime))
     print(deadlineDate)
 
     query = "INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description) VALUES (?,?,?,?,?,?,?,?)"
@@ -290,7 +293,7 @@ def create_product():
          str(sellerEmail),
          str(photo),
          initialPrice,
-         currentTime,
+         deadlineDate,
          increment,
          deadlineDate,
          str(description)))
