@@ -7,16 +7,13 @@ import {
     CardTitle,
     CardText,
     Button,
+    Badge,
 } from 'reactstrap'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import { URL } from '../global'
 import '../css/card.css'
 import { toast } from 'react-toastify'
-
-/**
- * This component displays a single product card on the products page.
- */
 
 const ProductCard = ({ product, maxBid, name }) => {
     const [url, setUrl] = useState(`/details/${product[0]}`)
@@ -43,13 +40,15 @@ const ProductCard = ({ product, maxBid, name }) => {
                 <CardTitle tag="h3" style={{ textAlign: 'center' }}>
                     {product[1]}
                 </CardTitle>
+                <Badge color="info" style={{ position: 'absolute', top: '10px', right: '10px' }}>
+                    {product[8]} {/* Assuming category is at index 8 */}
+                </Badge>
                 <hr />
                 <CardImg
                     className="mx-auto"
                     src={image}
                     style={{ width: '50%', textAlign: 'center' }}
                 />
-                {/* <img alt="Sample" src={image} /> */}
                 <CardBody>
                     <CardText>Seller: {product[2]}</CardText>
                     <CardText>Minimum price: ${product[3]}</CardText>

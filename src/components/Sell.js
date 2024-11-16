@@ -6,7 +6,6 @@ import Footer from './Footer'
 import { URL } from '../global'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { isLabelWithInternallyDisabledControl } from '@testing-library/user-event/dist/utils'
 
 const toBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -20,10 +19,6 @@ const toBase64 = (file) =>
 
         reader.readAsDataURL(file)
     })
-
-/**
- * This component is used to add a product to sell.
- */
 
 const Sell = () => {
     const navigate = useNavigate()
@@ -52,6 +47,7 @@ const Sell = () => {
                 description: '',
                 biddingTime: '',
                 photo: '',
+                category: '',
             })
             toast.success(response.data.result)
             navigate('/products')
@@ -59,9 +55,6 @@ const Sell = () => {
             console.log(e)
             toast.error('Something went wrong')
         }
-        //Set local storage
-        // if(api.response == success)
-        //   localStorage.setItem("auth", true);
     }
 
     const [formData, setFormData] = useState({
@@ -71,6 +64,7 @@ const Sell = () => {
         datePosted: Date.now(),
         description: '',
         biddingTime: '',
+        category: '',
     })
 
     const handleFileInputChange = useCallback(async (acceptedFiles) => {
@@ -82,6 +76,16 @@ const Sell = () => {
             console.log('Base64: ' + base64EncodedImage)
         }
     }, [])
+
+    const categories = [
+        'Electronics',
+        'Collectibles & Art',
+        'Fashion',
+        'Home & Garden',
+        'Sports & Outdoor',
+        'Vehicles',
+        'Jewelry & Watches'
+    ]
 
     return (
         <body
@@ -116,6 +120,23 @@ const Sell = () => {
                             value={formData.productName}
                             onChange={(e) => handleChange(e)}
                         />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="category">Category</Label>
+                        <Input
+                            id="category"
+                            name="category"
+                            type="select"
+                            value={formData.category}
+                            onChange={(e) => handleChange(e)}
+                        >
+                            <option value="">Select a category</option>
+                            {categories.map((category, index) => (
+                                <option key={index} value={category}>
+                                    {category}
+                                </option>
+                            ))}
+                        </Input>
                     </FormGroup>
                     <FormGroup>
                         <Label for="initialPrice">Minimum Price</Label>
