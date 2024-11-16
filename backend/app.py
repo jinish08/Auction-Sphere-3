@@ -145,6 +145,11 @@ def profile():
     conn = create_connection(database)
     c = conn.cursor()
 
+    if(global_email is None): 
+        response = {}
+        response['message'] = "Please login first!"
+        return jsonify(response)
+
     query = 'SELECT * FROM users WHERE email=\'' + str(global_email) + "\';" 
     c.execute(query)
     result = list(c.fetchall())
@@ -200,6 +205,7 @@ def profile():
             names_bids.append("N/A")
 
     response = {}
+    print("Result:", result)
     response['first_name'] = result[0][0]
     response['last_name'] = result[0][1]
     response['contact_no'] = result[0][2]
