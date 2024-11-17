@@ -205,6 +205,7 @@ def profile():
             names_bids.append("N/A")
 
     response = {}
+    print("Result:", result)
     response['first_name'] = result[0][0]
     response['last_name'] = result[0][1]
     response['contact_no'] = result[0][2]
@@ -280,33 +281,24 @@ def create_product():
     photo = request.get_json()['photo']
     description = request.get_json()['description']
     biddingtime = request.get_json()['biddingTime']
+    category = request.get_json()['category']  # Add this line
+
     conn = create_connection(database)
     c = conn.cursor()
     response = {}
+
     currentdatetime = datetime.now()
     formatted_date = currentdatetime.strftime('%Y-%m-%d %H:%M:%S')
     parsed_date = datetime.strptime(formatted_date, '%Y-%m-%d %H:%M:%S')
-    print(type(currentdatetime))
-    print(type(biddingtime))
     deadlineDate = parsed_date + timedelta(days=int(biddingtime))
-    print(deadlineDate)
 
-    query = "INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description) VALUES (?,?,?,?,?,?,?,?)"
+    query = "INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description, category) VALUES (?,?,?,?,?,?,?,?,?)"
     c.execute(
-        query,
-        (str(productName),
-         str(sellerEmail),
-         str(photo),
-         initialPrice,
-         deadlineDate,
-         increment,
-         deadlineDate,
-         str(description)))
+        query, (str(productName), str(sellerEmail), str(photo), initialPrice, deadlineDate, increment, deadlineDate, str(description), str(category))
+    )
     conn.commit()
     response["result"] = "Added product successfully"
-
     return response
-
 
 """
 API end point to list all the products.
@@ -316,7 +308,7 @@ This API lists down all the product details present in product table sorted in t
 
 @app.route("/product/listAll", methods=["GET"])
 def get_all_products():
-    query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product ORDER BY date DESC"
+    query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description, category FROM product ORDER BY date DESC"
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
@@ -356,16 +348,13 @@ It also lists down top ten bids of a particular product.
 @app.route("/product/getDetails", methods=["POST"])
 def get_product_details():
     productID = request.get_json()['productID']
-
     conn = create_connection(database)
     c = conn.cursor()
 
-    # gets product details
     query = "SELECT * FROM product WHERE prod_id=" + str(productID) + ";"
     c.execute(query)
     result = list(c.fetchall())
 
-    # get highest 10 bids
     query = "SELECT users.first_name, users.last_name, bids.bid_amount FROM users INNER JOIN bids ON bids.email = users.email WHERE bids.prod_id=" + \
         str(productID) + " ORDER BY bid_amount DESC LIMIT 10;"
     c.execute(query)
@@ -391,17 +380,17 @@ def update_product_details():
     deadlineDate = request.get_json()['deadlineDate']
     description = request.get_json()['description']
     increment = request.get_json()['increment']
+    category = request.get_json()['category']  # Add this line
 
     query = "UPDATE product SET name='" + str(productName) + "',initial_price='" + str(initialPrice) + "',deadline_date='" + str(
-        deadlineDate) + "',increment='" + str(increment) + "',description='" + str(description) + "' WHERE prod_id=" + str(productId) + ";"
-    print(query)
+        deadlineDate) + "',increment='" + str(increment) + "',description='" + str(description) + "',category='" + str(category) + "' WHERE prod_id=" + str(productId) + ";"
+    
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
     conn.commit()
     response = {"message": "Updated product successfully"}
     return response
-
 
 """
 API end point to get top ten latest products.
@@ -414,7 +403,7 @@ If there is no such bid on the product, -1 is appended to the list.
 @app.route("/getLatestProducts", methods=["GET"])
 def get_landing_page():
     response = {}
-    query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product ORDER BY date DESC LIMIT 10;"
+    query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description, category FROM product ORDER BY date DESC LIMIT 10;"
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
@@ -451,21 +440,36 @@ def get_landing_page():
 @app.route("/getTopTenProducts", methods=["GET"])
 def get_top_products():
     response = {}
-    query = "SELECT name, photo, description FROM product ORDER BY date DESC LIMIT 10;"
+    query = "SELECT name, photo, description, category FROM product ORDER BY date DESC LIMIT 10;"
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
     products = list(c.fetchall())
-    if products.__len__ ==0:
+
+    if products.__len__ == 0:
         print("No data found")
     response = {
-        "products": products}
+        "products": products
+    }
     return jsonify(response)
 
 database = r"auction.db"
 create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
 
-create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, photo TEXT, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date TIMESTAMP NOT NULL, increment REAL, deadline_date TIMESTAMP NOT NULL, description TEXT,  FOREIGN KEY(seller_email) references users(email));"""
+create_product_table = """CREATE TABLE IF NOT EXISTS product(
+    prod_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    photo TEXT,
+    seller_email TEXT NOT NULL,
+    initial_price REAL NOT NULL,
+    date TIMESTAMP NOT NULL,
+    increment REAL,
+    deadline_date TIMESTAMP NOT NULL,
+    description TEXT,
+    category TEXT,
+    FOREIGN KEY(seller_email) references users(email)
+);"""
+
 
 create_bids_table = """CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TEXT NOT NULL , bid_amount REAL NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id), PRIMARY KEY(prod_id, email));"""
 
