@@ -14,7 +14,9 @@ const Profile = () => {
         const fetchData = async () => {
             try {
                 const response = await axios.post(`${URL}/profile`)
-                console.log(response.data)
+                if(response.data?.message === 'Please login first!'){
+                    window.location.href = '/login'
+                }
                 setData(response.data)
             } catch (e) {
                 toast.error(e)
