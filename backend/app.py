@@ -1,15 +1,20 @@
-#import os
+# import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3
 from sqlite3 import Error
 from datetime import datetime, timedelta
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
 CORS(app)
 
 
 global_email = None
+
 
 def create_connection(db_file):
     conn = None
@@ -33,6 +38,80 @@ def convertToBinaryData(filename):
     with open(filename, 'rb') as file:
         blobData = file.read()
     return blobData
+
+
+def send_email(recipient, subject, body):
+    sender_email = "jinishshah08@gmail.com"
+    sender_password = "pjrl miob pjuu igel"
+
+    message = MIMEMultipart()
+    message["From"] = sender_email
+    message["To"] = recipient
+    message["Subject"] = subject
+
+    message.attach(MIMEText(body, "plain"))
+
+    with smtplib.SMTP("smtp.gmail.com", 587) as server:
+        server.starttls()
+        server.login(sender_email, sender_password)
+        server.send_message(message)
+
+
+def check_ended_auctions_and_notify():
+    conn = create_connection(database)
+    c = conn.cursor()
+
+    current_time = datetime.now()
+    query = "SELECT prod_id, name, initial_price, seller_email FROM product WHERE deadline_date <= ? AND prod_id NOT IN (SELECT prod_id FROM claims)"
+    c.execute(query, (current_time,))
+    ended_auctions = c.fetchall()
+
+    for auction in ended_auctions:
+        prod_id, product_name, initial_price, seller_email = auction
+
+        # Get the highest bid
+        query = "SELECT email, MAX(bid_amount) FROM bids WHERE prod_id = ?"
+        c.execute(query, (prod_id,))
+        winner_info = c.fetchone()
+
+        if winner_info and winner_info[0]:
+            winner_email, winning_bid = winner_info
+
+            print("Winner email:", winner_email)
+
+            # Send email to the winner
+            subject = f"Congratulations! You've won the auction for {product_name}"
+            body = f"Dear bidder,\n\nCongratulations! You've won the auction for {product_name} with a bid of ${winning_bid}. The product will be delivered to you soon.\n\nThank you for participating in our auction."
+            send_email(winner_email, subject, body)
+
+            # Send email to the seller
+            seller_subject = f"Your item {product_name} has been sold"
+            seller_body = f"Dear seller,\n\nYour item {product_name} has been sold for ${winning_bid}. Please arrange for the delivery of the item to the winning bidder.\n\nThank you for using our auction platform."
+            send_email(seller_email, seller_subject, seller_body)
+
+            # Add to claims table
+            claim_query = "INSERT INTO claims (prod_id, email, expiry_date, claim_status) VALUES (?, ?, ?, ?)"
+            # Set an expiry date for the claim
+            expiry_date = current_time + timedelta(days=7)
+            # 0 for pending claim status
+            c.execute(claim_query, (prod_id, winner_email, expiry_date, 0))
+
+            # Remove the product from active listings
+            remove_query = "DELETE FROM product WHERE prod_id = ?"
+            c.execute(remove_query, (prod_id,))
+
+        else:
+            # No bids were placed, notify the seller
+            subject = f"Your auction for {product_name} has ended without bids"
+            body = f"Dear seller,\n\nYour auction for {product_name} has ended without any bids. You may want to consider relisting the item.\n\nThank you for using our auction platform."
+            send_email(seller_email, subject, body)
+
+            # Remove the product from active listings
+            remove_query = "DELETE FROM product WHERE prod_id = ?"
+            c.execute(remove_query, (prod_id,))
+
+    conn.commit()
+    conn.close()
 
 
 database = r"auction.db"
@@ -97,8 +176,7 @@ If the email and password are correct, login is successful else user is asked to
 
 
 @app.route("/login", methods=["POST"])
-
-def login(): 
+def login():
     global global_email
     email = request.get_json()['email']
     password = request.get_json()['password']
@@ -117,7 +195,7 @@ def login():
         response["message"] = "Logged in successfully"
 
         global_email = str(email)
-    else: 
+    else:
         # check if email exists, but password is incorrect
         query = "SELECT COUNT(*) FROM users WHERE email='" + str(email) + "';"
         c.execute(query)
@@ -137,53 +215,60 @@ It also displays the specific product cards for the user.
 It shows the products the user has put for sale and the products for which the user has submitted a bid.
 """
 
+
 @app.route('/profile', methods=["POST"])
 def profile():
     global global_email
-    
+
     # create db connection
     conn = create_connection(database)
     c = conn.cursor()
 
-    if(global_email is None): 
+    if (global_email is None):
         response = {}
         response['message'] = "Please login first!"
         return jsonify(response)
 
-    query = 'SELECT * FROM users WHERE email=\'' + str(global_email) + "\';" 
+    query = 'SELECT * FROM users WHERE email=\'' + str(global_email) + "\';"
     c.execute(query)
     result = list(c.fetchall())
 
-    query_sell = 'SELECT COUNT(*) FROM product WHERE seller_email=\'' + str(global_email) + '\';'
+    query_sell = 'SELECT COUNT(*) FROM product WHERE seller_email=\'' + \
+        str(global_email) + '\';'
     c.execute(query_sell)
     result_sell = list(c.fetchall())
 
-    query_bid = 'SELECT COUNT(*) FROM bids WHERE email=\'' + str(global_email) + '\';'
+    query_bid = 'SELECT COUNT(*) FROM bids WHERE email=\'' + \
+        str(global_email) + '\';'
     c.execute(query_bid)
     result_bid = list(c.fetchall())
 
-    query_sell = 'SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product WHERE seller_email=\'' + str(global_email) + '\'ORDER BY date DESC LIMIT 10;'
+    query_sell = 'SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product WHERE seller_email=\'' + \
+        str(global_email) + '\'ORDER BY date DESC LIMIT 10;'
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query_sell)
     products = list(c.fetchall())
     highestBids = []
     names = []
-    for product in products: 
-        query = "SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + str(product[0]) +";"
+    for product in products:
+        query = "SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + \
+            str(product[0]) + ";"
         c.execute(query)
         result_bids = list(c.fetchall())
-        if(result_bids[0][0] is not None): 
+        if (result_bids[0][0] is not None):
             result_bids = result_bids[0]
             highestBids.append(result_bids[1])
-            query = "SELECT first_name, last_name FROM users WHERE email='" + str(result_bids[0]) +"';"
+            query = "SELECT first_name, last_name FROM users WHERE email='" + \
+                str(result_bids[0]) + "';"
             c.execute(query)
             names.append(list(c.fetchall())[0])
-        else: 
+        else:
             highestBids.append(-1)
             names.append("N/A")
-    
-    query_2 = 'SELECT P.prod_id, P.name, P.seller_email, P.initial_price, P.date, P.increment, P.deadline_date, P.description FROM product P join bids B on P.prod_id = B.prod_id WHERE B.email = \'' + str(global_email) + '\';'
+
+    query_2 = 'SELECT P.prod_id, P.name, P.seller_email, P.initial_price, P.date, P.increment, P.deadline_date, P.description FROM product P join bids B on P.prod_id = B.prod_id WHERE B.email = \'' + \
+        str(global_email) + '\';'
     print("Query 2:", query_2)
     c.execute(query_2)
     bid_products_1 = list(c.fetchall())
@@ -191,20 +276,23 @@ def profile():
     names_bids = []
 
     for product in bid_products_1:
-        query_products ="SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + str(product[0]) +";"
+        query_products = "SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + str(
+            product[0]) + ";"
         c.execute(query_products)
         result_bid_products = list(c.fetchall())
-        if(result_bid_products[0][0] is not None): 
+        if (result_bid_products[0][0] is not None):
             result_bid_products = result_bid_products[0]
             highest_Bids.append(result_bid_products[1])
-            query = "SELECT first_name, last_name FROM users WHERE email='" + str(result_bid_products[0]) +"';"
+            query = "SELECT first_name, last_name FROM users WHERE email='" + \
+                str(result_bid_products[0]) + "';"
             c.execute(query)
             names_bids.append(list(c.fetchall())[0])
-        else: 
+        else:
             highest_Bids.append(-1)
             names_bids.append("N/A")
 
     response = {}
+    print("Result:", result)
     response['first_name'] = result[0][0]
     response['last_name'] = result[0][1]
     response['contact_no'] = result[0][2]
@@ -212,13 +300,14 @@ def profile():
     response['no_products'] = result_sell[0][0]
     response['no_bids'] = result_bid[0][0]
     response['products'] = products
-    response['maximum_bids'] = highestBids 
+    response['maximum_bids'] = highestBids
     response['names'] = names
     response['bid_products'] = bid_products_1
     response['bid_bids'] = highest_Bids
     response['bid_names'] = names_bids
 
     return jsonify(response)
+
 
 """
 API end point to create a new bid.
@@ -280,31 +369,24 @@ def create_product():
     photo = request.get_json()['photo']
     description = request.get_json()['description']
     biddingtime = request.get_json()['biddingTime']
+    category = request.get_json()['category']  # Add this line
+
     conn = create_connection(database)
     c = conn.cursor()
     response = {}
+
     currentdatetime = datetime.now()
     formatted_date = currentdatetime.strftime('%Y-%m-%d %H:%M:%S')
     parsed_date = datetime.strptime(formatted_date, '%Y-%m-%d %H:%M:%S')
-    print(type(currentdatetime))
-    print(type(biddingtime))
     deadlineDate = parsed_date + timedelta(days=int(biddingtime))
-    print(deadlineDate)
 
-    query = "INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description) VALUES (?,?,?,?,?,?,?,?)"
+    query = "INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description, category) VALUES (?,?,?,?,?,?,?,?,?)"
     c.execute(
-        query,
-        (str(productName),
-         str(sellerEmail),
-         str(photo),
-         initialPrice,
-         deadlineDate,
-         increment,
-         deadlineDate,
-         str(description)))
+        query, (str(productName), str(sellerEmail), str(photo), initialPrice,
+                deadlineDate, increment, deadlineDate, str(description), str(category))
+    )
     conn.commit()
     response["result"] = "Added product successfully"
-
     return response
 
 
@@ -316,7 +398,7 @@ This API lists down all the product details present in product table sorted in t
 
 @app.route("/product/listAll", methods=["GET"])
 def get_all_products():
-    query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product ORDER BY date DESC"
+    query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description, category FROM product ORDER BY date DESC"
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
@@ -356,16 +438,13 @@ It also lists down top ten bids of a particular product.
 @app.route("/product/getDetails", methods=["POST"])
 def get_product_details():
     productID = request.get_json()['productID']
-
     conn = create_connection(database)
     c = conn.cursor()
 
-    # gets product details
     query = "SELECT * FROM product WHERE prod_id=" + str(productID) + ";"
     c.execute(query)
     result = list(c.fetchall())
 
-    # get highest 10 bids
     query = "SELECT users.first_name, users.last_name, bids.bid_amount FROM users INNER JOIN bids ON bids.email = users.email WHERE bids.prod_id=" + \
         str(productID) + " ORDER BY bid_amount DESC LIMIT 10;"
     c.execute(query)
@@ -391,10 +470,11 @@ def update_product_details():
     deadlineDate = request.get_json()['deadlineDate']
     description = request.get_json()['description']
     increment = request.get_json()['increment']
+    category = request.get_json()['category']  # Add this line
 
     query = "UPDATE product SET name='" + str(productName) + "',initial_price='" + str(initialPrice) + "',deadline_date='" + str(
-        deadlineDate) + "',increment='" + str(increment) + "',description='" + str(description) + "' WHERE prod_id=" + str(productId) + ";"
-    print(query)
+        deadlineDate) + "',increment='" + str(increment) + "',description='" + str(description) + "',category='" + str(category) + "' WHERE prod_id=" + str(productId) + ";"
+
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
@@ -414,7 +494,7 @@ If there is no such bid on the product, -1 is appended to the list.
 @app.route("/getLatestProducts", methods=["GET"])
 def get_landing_page():
     response = {}
-    query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product ORDER BY date DESC LIMIT 10;"
+    query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description, category FROM product ORDER BY date DESC LIMIT 10;"
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
@@ -451,21 +531,38 @@ def get_landing_page():
 @app.route("/getTopTenProducts", methods=["GET"])
 def get_top_products():
     response = {}
-    query = "SELECT name, photo, description FROM product ORDER BY date DESC LIMIT 10;"
+    query = "SELECT name, photo, description, category FROM product ORDER BY date DESC LIMIT 10;"
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
     products = list(c.fetchall())
-    if products.__len__ ==0:
+
+    if products.__len__ == 0:
         print("No data found")
     response = {
-        "products": products}
+        "products": products
+    }
     return jsonify(response)
+
 
 database = r"auction.db"
 create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
 
-create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, photo TEXT, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date TIMESTAMP NOT NULL, increment REAL, deadline_date TIMESTAMP NOT NULL, description TEXT,  FOREIGN KEY(seller_email) references users(email));"""
+create_product_table = """CREATE TABLE IF NOT EXISTS product(
+    prod_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    photo TEXT,
+    seller_email TEXT NOT NULL,
+    initial_price REAL NOT NULL,
+    date TIMESTAMP NOT NULL,
+    increment REAL,
+    deadline_date TIMESTAMP NOT NULL,
+    description TEXT,
+    category TEXT,
+    winner_notified BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY(seller_email) references users(email)
+);"""
+
 
 create_bids_table = """CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TEXT NOT NULL , bid_amount REAL NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id), PRIMARY KEY(prod_id, email));"""
 
@@ -482,5 +579,9 @@ else:
     print("Error! Cannot create the database connection")
 
 if __name__ == "__main__":
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(func=check_ended_auctions_and_notify,
+                      trigger="interval", minutes=60)
+    scheduler.start()
     app.debug = True
     app.run()
