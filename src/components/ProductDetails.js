@@ -1,26 +1,70 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { Button, Card, CardImg, CardTitle, CardText } from 'reactstrap'
+import { Button, Card, CardImg, CardTitle, CardText, Row, Col } from 'reactstrap'
 import axios from 'axios'
+import { Line, Bar } from 'react-chartjs-2'
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js'
 
 import AddBid from './AddBid'
 import Navv from './Navv'
 import { URL } from '../global'
 import { toast } from 'react-toastify'
 import CountdownTimer from './Countdown'
-/**
- * This component is the details page of a single product.
- */
+
+// Register ChartJS components
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+)
 
 function calcDate(inputDate) {
     return new Date(inputDate)
 }
+
 const ProductDetails = () => {
     let { id } = useParams()
     const [showAddBid, setShowAddBid] = useState(false)
     const [showButton, setShowButton] = useState(false)
     const [bids, setBids] = useState([])
     const [product, setProduct] = useState(null)
+    const [bidHistory, setBidHistory] = useState({
+        labels: [],
+        datasets: [{
+            label: 'Bid Amount History',
+            data: [],
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    })
+    const [userEngagement, setUserEngagement] = useState({
+        labels: ['Unique Bidders', 'Total Bids', 'Viewers'],
+        datasets: [{
+            label: 'User Engagement',
+            data: [0, 0, 0],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+            ],
+        }]
+    })
+
     const getProductDetails = async () => {
         try {
             let data = await axios.post(`${URL}/product/getDetails`, {
@@ -29,10 +73,56 @@ const ProductDetails = () => {
             console.log(data)
             setBids(data.data.bids)
             setProduct(data.data.product[0])
+            
+            // Process bid history for chart
+            const bidAmounts = data.data.bids.map(bid => bid[2])
+            const bidders = data.data.bids.map(bid => `${bid[0]} ${bid[1]}`)
+            
+            setBidHistory({
+                labels: bidders,
+                datasets: [{
+                    label: 'Bid Amount History',
+                    data: bidAmounts,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            })
+
+            // Update user engagement
+            setUserEngagement({
+                labels: ['Unique Bidders', 'Total Bids', 'Viewers'],
+                datasets: [{
+                    label: 'User Engagement',
+                    data: [
+                        new Set(bidders).size,
+                        data?.data?.analytics?.total_bids ? data?.data?.analytics?.total_bids:   bidAmounts.length,
+                        data?.data?.analytics?.viewers ? data?.data?.analytics?.viewers:bidAmounts.length * 2 
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(75, 192, 192, 0.5)',
+                    ],
+                }]
+            })
         } catch (error) {
             toast.error('Something went wrong')
         }
     }
+
+    const chartOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Bidding Analytics'
+            }
+        }
+    }
+
     useEffect(() => {
         getProductDetails()
         if (typeof window !== 'undefined') {
@@ -41,113 +131,161 @@ const ProductDetails = () => {
             }
         }
     }, [])
+
     return (
         <>
-            <div
-                style={{
-                    background:
-                        'linear-gradient(30deg, #020024, #090979,#94bbe9)',
-                    backgroundAttachment: 'scroll',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                }}
-            >
-                <Navv />
-                <Card
-                    className="mx-auto"
-                    color="light"
-                    outline
-                    style={{
-                        width: '45rem',
-                        margin: '5rem',
-                        textAlign: 'center',
-                    }}
-                >
-                    {product && (
-                        <div>
-                            <CardTitle tag="h3" style={{ textAlign: 'center' }}>
-                                {product[1]}{' '}
-                            </CardTitle>
-                            <CardTitle style={{ textAlign: 'right' }}>
-                                <CountdownTimer
-                                    targetDate={calcDate(product[7])}
-                                />
-                            </CardTitle>
-                            <hr />
-                            <CardImg
-                                src={product[2]}
-                                className="mx-auto"
-                                style={{ width: '50%' }}
-                            />
-                            <CardText>
-                                <p>Seller:&nbsp;&nbsp;{product[3]} </p>
-                                <p>
-                                    Minimum price:
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    {product[4]}${' '}
-                                </p>
-                                <p>
-                                    Date posted: &nbsp;&nbsp;&nbsp;{product[5]}{' '}
-                                </p>
-                                <p>
-                                    Bidding window closes on: &nbsp;&nbsp;&nbsp;
-                                    {product[7]}{' '}
-                                </p>
-                                <p>
-                                    Minimum price increment to beat a bid:
-                                    &nbsp;&nbsp;&nbsp;
-                                    {product[6]}${' '}
-                                </p>
-                                <p>
-                                    Product Description: &nbsp;&nbsp;
-                                    {product[8]}{' '}
-                                </p>
-                                {bids.length > 0 ? (
-                                    <>
-                                        <h5>Current Highest bids:</h5>
-                                        {bids.map((bid, index) => (
-                                            <div key={index}>
-                                                <p>
-                                                    Bidder:{' '}
-                                                    {bid[0] + ' ' + bid[1]}
-                                                </p>
-                                                <p>Bid amount: ${bid[2]}</p>
+            <div style={{
+            background: 'linear-gradient(30deg, #020024, #090979,#94bbe9)',
+            minHeight: '100vh',
+            paddingBottom: '2rem'
+        }}>
+            <Navv />
+            <div className="container py-5">
+                {product && (
+                    <Card className="shadow-lg">
+                        <div className="p-4">
+                            {/* Header Section */}
+                            <Row className="mb-4">
+                                <Col xs="12">
+                                    <div className="d-flex justify-content-between align-items-center">
+                                        <CardTitle tag="h2" className="mb-0">
+                                            {product[1]}
+                                        </CardTitle>
+                                        <div className="text-right">
+                                            <CountdownTimer targetDate={calcDate(product[7])} />
+                                        </div>
+                                    </div>
+                                </Col>
+                            </Row>
+
+                            {/* Main Content Section */}
+                            <Row>
+                                {/* Left Column - Product Details */}
+                                <Col md="6" className="mb-4">
+                                    <div className="product-image-container mb-4" style={{ 
+                                        background: '#f8f9fa',
+                                        padding: '1rem',
+                                        borderRadius: '8px',
+                                        textAlign: 'center'
+                                    }}>
+                                        <CardImg
+                                            src={product[2]}
+                                            alt={product[1]}
+                                            style={{
+                                                maxWidth: '100%',
+                                                height: 'auto',
+                                                maxHeight: '400px',
+                                                objectFit: 'contain'
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="product-details p-3" style={{
+                                        background: '#f8f9fa',
+                                        borderRadius: '8px'
+                                    }}>
+                                        <table className="table table-borderless">
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Seller:</strong></td>
+                                                    <td>{product[3]}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Minimum Price:</strong></td>
+                                                    <td>${product[4]}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Minimum Increment:</strong></td>
+                                                    <td>${product[6]}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Posted On:</strong></td>
+                                                    <td>{new Date(product[5]).toLocaleDateString()}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div className="mt-3">
+                                            <h5>Description:</h5>
+                                            <p className="text-muted">{product[8]}</p>
+                                        </div>
+                                    </div>
+                                </Col>
+
+                                {/* Right Column - Charts */}
+                                <Col md="5">
+                                    <div className="chart-container p-3 mb-4" style={{
+                                        background: '#f8f9fa',
+                                        borderRadius: '8px',
+                                        height: '300px'
+                                    }}>
+                                        <h4 className="mb-3">Bidding History</h4>
+                                        <Line options={chartOptions} data={bidHistory} />
+                                    </div>
+                                    <div className="chart-container p-3" style={{
+                                        background: '#f8f9fa',
+                                        borderRadius: '8px',
+                                        height: '300px'
+                                    }}>
+                                        <h4 className="mb-3">User Engagement</h4>
+                                        <Bar options={chartOptions} data={userEngagement} />
+                                    </div>
+                                </Col>
+                            </Row>
+
+                            {/* Bottom Section - Current Bids */}
+                            <Row className="mt-4">
+                                <Col xs="12">
+                                    <div className="bids-section p-4" style={{
+                                        background: '#f8f9fa',
+                                        borderRadius: '8px'
+                                    }}>
+                                        <h4 className="mb-4">Current Bids</h4>
+                                        {bids.length > 0 ? (
+                                            <Row>
+                                                {bids.map((bid, index) => (
+                                                    <Col md="4" key={index}>
+                                                        <div className="bid-item mb-3 p-3" style={{
+                                                            background: 'white',
+                                                            borderRadius: '4px',
+                                                            boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+                                                        }}>
+                                                            <div className="text-center">
+                                                                <h5>{bid[0]} {bid[1]}</h5>
+                                                                <h4 className="text-primary">${bid[2]}</h4>
+                                                            </div>
+                                                        </div>
+                                                    </Col>
+                                                ))}
+                                            </Row>
+                                        ) : (
+                                            <div className="text-center text-muted">
+                                                <p>No bids placed yet</p>
                                             </div>
-                                        ))}
-                                    </>
-                                ) : (
-                                    <h5>No bids so far</h5>
-                                )}
-                                {showButton && (
-                                    <>
-                                        <Button
-                                            color="info"
-                                            onClick={() =>
-                                                setShowAddBid(!showAddBid)
-                                            }
-                                        >
-                                            {showAddBid ? (
-                                                <span>-</span>
-                                            ) : (
-                                                <span>+</span>
-                                            )}{' '}
-                                            Add a Bid
-                                        </Button>
-                                        {showAddBid && (
-                                            <AddBid
-                                                productId={id}
-                                                sellerEmail={product[3]}
-                                            />
                                         )}
-                                    </>
-                                )}
-                            </CardText>
+
+                                        {showButton && (
+                                            <div className="text-center mt-4">
+                                                <Button 
+                                                    color="primary" 
+                                                    size="lg"
+                                                    onClick={() => setShowAddBid(!showAddBid)}
+                                                >
+                                                    {showAddBid ? 'Cancel' : 'Place a Bid'}
+                                                </Button>
+                                                {showAddBid && (
+                                                    <div className="mt-4">
+                                                        <AddBid productId={id} sellerEmail={product[3]} />
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                </Col>
+                            </Row>
                         </div>
-                    )}
-                </Card>
+                    </Card>
+                )}
             </div>
+        </div>
         </>
     )
 }

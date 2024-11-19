@@ -188,6 +188,7 @@ const Sell = () => {
                             type="file"
                             name="file"
                             onChange={(e) => handleFileInputChange(e)}
+                            accept="image/*"
                         />
                     </FormGroup>
                     <Button color="primary">Submit</Button>
