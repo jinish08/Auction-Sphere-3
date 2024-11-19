@@ -380,17 +380,13 @@ def create_product():
     parsed_date = datetime.strptime(formatted_date, '%Y-%m-%d %H:%M:%S')
     deadlineDate = parsed_date + timedelta(days=int(biddingtime))
 
-    query = "INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description, category, category) VALUES (?,?,?,?,?,?,?,?,?,?)"
+
+    query = "INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description, category) VALUES (?,?,?,?,?,?,?,?,?)"
+
     c.execute(
-        query,
-        (str(productName),
-         str(sellerEmail),
-         str(photo),
-         initialPrice,
-         deadlineDate,
-         increment,
-         deadlineDate,
-         str(description)))
+        query, (str(productName), str(sellerEmail), str(photo), initialPrice,
+                deadlineDate, increment, deadlineDate, str(description), str(category))
+    )
     conn.commit()
     response["result"] = "Added product successfully"
     return response
@@ -478,8 +474,8 @@ def update_product_details():
     category = request.get_json()['category']  # Add this line
 
     query = "UPDATE product SET name='" + str(productName) + "',initial_price='" + str(initialPrice) + "',deadline_date='" + str(
-        deadlineDate) + "',increment='" + str(increment) + "',description='" + str(description) + "' WHERE prod_id=" + str(productId) + ";"
-    print(query)
+        deadlineDate) + "',increment='" + str(increment) + "',description='" + str(description) + "',category='" + str(category) + "' WHERE prod_id=" + str(productId) + ";"
+
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
@@ -552,7 +548,21 @@ def get_top_products():
 database = r"auction.db"
 create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
 
-create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, photo TEXT, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date TIMESTAMP NOT NULL, increment REAL, deadline_date TIMESTAMP NOT NULL, description TEXT,  FOREIGN KEY(seller_email) references users(email));"""
+create_product_table = """CREATE TABLE IF NOT EXISTS product(
+    prod_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    photo TEXT,
+    seller_email TEXT NOT NULL,
+    initial_price REAL NOT NULL,
+    date TIMESTAMP NOT NULL,
+    increment REAL,
+    deadline_date TIMESTAMP NOT NULL,
+    description TEXT,
+    category TEXT,
+    winner_notified BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY(seller_email) references users(email)
+);"""
+
 
 create_bids_table = """CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TEXT NOT NULL , bid_amount REAL NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id), PRIMARY KEY(prod_id, email));"""
 
