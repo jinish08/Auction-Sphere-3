@@ -321,36 +321,42 @@ Otherwise it is created/updated.
 
 @app.route("/bid/create", methods=["POST"])
 def create_bid():
-    # Get relevant data
     productId = request.get_json()['prodId']
     email = request.get_json()['email']
     amount = request.get_json()['bidAmount']
 
-    # create db connection
     conn = create_connection(database)
     c = conn.cursor()
 
-    # get initial price wanted by seller
-    select_query = "SELECT initial_price FROM product WHERE prod_id='" + \
-        str(productId) + "';"
-    c.execute(select_query)
-    result = list(c.fetchall())
+    # Get current highest bid
+    current_bid_query = "SELECT MAX(bid_amount) FROM bids WHERE prod_id=?"
+    c.execute(current_bid_query, (productId,))
+    current_bid = c.fetchone()[0] or 0
+
+    # Get product details
+    select_query = "SELECT initial_price, increment FROM product WHERE prod_id=?"
+    c.execute(select_query, (productId,))
+    result = c.fetchone()
     response = {}
 
-    #  if bid amount is less than price by seller then don't save in db
-    if (result[0][0] > (float)(amount)):
+    if result[0] > float(amount):
         response["message"] = "Amount less than initial price"
+    elif current_bid >= float(amount):
+        response["message"] = "Bid amount must be higher than current highest bid"
     else:
         currentTime = int(datetime.utcnow().timestamp())
-        # print(currentTime)
-        insert_query = "INSERT OR REPLACE INTO bids(prod_id,email,bid_amount,created_at) VALUES ('" + str(
-            productId) + "','" + str(email) + "','" + str(amount) + "','" + str(currentTime) + "');"
-        c.execute(insert_query)
+        insert_query = """
+            INSERT OR REPLACE INTO bids(prod_id, email, bid_amount, created_at) 
+            VALUES (?, ?, ?, ?)
+        """
+        c.execute(insert_query, (productId, email, amount, currentTime))
         conn.commit()
+        
+        # Process auto-bids after manual bid
+        process_auto_bids(productId)
+        response["message"] = "Bid placed successfully"
 
-        response["message"] = "Saved Bid"
     return jsonify(response)
-
 
 """
 API end point for new product creation.
@@ -553,6 +559,115 @@ def get_top_products():
     return jsonify(response)
 
 
+@app.route("/bid/auto", methods=["POST"])
+def create_auto_bid():
+    productId = request.get_json()['prodId']
+    email = request.get_json()['email']
+    max_amount = request.get_json()['maxBidAmount']
+    initial_bid = request.get_json()['initialBid']
+
+    conn = create_connection(database)
+    c = conn.cursor()
+
+    # Validate initial bid
+    if float(initial_bid) >= float(max_amount):
+        return jsonify({"message": "Maximum amount must be greater than initial bid"})
+
+    # Create a mock request context for create_bid
+    with app.test_request_context('/', json={
+        'prodId': productId,
+        'email': email,
+        'bidAmount': initial_bid
+    }):
+        # Call create_bid within the request context
+        response = create_bid()
+        if isinstance(response, dict) and "message" in response and response["message"] != "Saved Bid":
+            return jsonify(response)
+
+    # Set up auto-bid
+    check_query = "SELECT * FROM auto_bids WHERE prod_id=? AND email=? AND active=TRUE"
+    c.execute(check_query, (productId, email))
+    existing_auto_bid = c.fetchone()
+
+    if existing_auto_bid:
+        update_query = """
+            UPDATE auto_bids 
+            SET max_bid_amount=?, created_at=? 
+            WHERE prod_id=? AND email=? AND active=TRUE
+        """
+        c.execute(update_query, (max_amount, datetime.now(), productId, email))
+    else:
+        insert_query = """
+            INSERT INTO auto_bids (prod_id, email, max_bid_amount, created_at) 
+            VALUES (?, ?, ?, ?)
+        """
+        c.execute(insert_query, (productId, email, max_amount, datetime.now()))
+
+    conn.commit()
+    process_auto_bids(productId)
+    
+    return jsonify({"message": "Auto-bid set successfully"})
+
+
+def process_auto_bids(product_id):
+    conn = create_connection(database)
+    c = conn.cursor()
+
+    # Get current highest bid
+    current_bid_query = """
+        SELECT email, bid_amount 
+        FROM bids 
+        WHERE prod_id=? 
+        ORDER BY bid_amount DESC 
+        LIMIT 1
+    """
+    c.execute(current_bid_query, (product_id,))
+    current_bid_info = c.fetchone()
+    current_bid_amount = current_bid_info[1] if current_bid_info else 0
+    current_bidder = current_bid_info[0] if current_bid_info else None
+
+    # Get product details
+    product_query = "SELECT initial_price, increment FROM product WHERE prod_id=?"
+    c.execute(product_query, (product_id,))
+    product_details = c.fetchone()
+    initial_price = product_details[0]
+    increment = product_details[1]
+
+    # Get all active auto-bids for this product, ordered by max amount
+    auto_bids_query = """
+        SELECT email, max_bid_amount 
+        FROM auto_bids 
+        WHERE prod_id=? AND active=TRUE 
+        AND email != ? 
+        ORDER BY max_bid_amount DESC
+    """
+    c.execute(auto_bids_query, (product_id, current_bidder))
+    auto_bids = c.fetchall()
+
+    if auto_bids:
+        highest_auto_bidder = auto_bids[0]
+        
+        # If current highest bid is not from the highest auto-bidder
+        if current_bidder != highest_auto_bidder[0]:
+            # Calculate new bid amount
+            new_bid = min(
+                highest_auto_bidder[1],  # Max amount of auto-bidder
+                current_bid_amount + increment  # Current bid + increment
+            )
+            
+            # Only place bid if it's within the auto-bidder's limit
+            if new_bid <= highest_auto_bidder[1] and new_bid > current_bid_amount:
+                currentTime = int(datetime.utcnow().timestamp())
+                insert_query = """
+                    INSERT OR REPLACE INTO bids(prod_id, email, bid_amount, created_at) 
+                    VALUES (?, ?, ?, ?)
+                """
+                c.execute(insert_query, (product_id, highest_auto_bidder[0], new_bid, currentTime))
+                conn.commit()
+
+    conn.close()
+
+
 database = r"auction.db"
 create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
 
@@ -576,6 +691,17 @@ create_bids_table = """CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TE
 
 create_table_claims = """CREATE TABLE IF NOT EXISTS claims(prod_id INTEGER, email TEXT NOT NULL, expiry_date TEXT NOT NULL, claim_status INTEGER, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id));"""
 
+create_auto_bids_table = """CREATE TABLE IF NOT EXISTS auto_bids(
+    auto_bid_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    prod_id INTEGER,
+    email TEXT NOT NULL,
+    max_bid_amount REAL NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    active BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY(email) references users(email),
+    FOREIGN KEY(prod_id) references product(prod_id)
+);"""
+
 """Create Connection to database"""
 conn = create_connection(database)
 if conn is not None:
@@ -583,6 +709,7 @@ if conn is not None:
     create_table(conn, create_product_table)
     create_table(conn, create_bids_table)
     create_table(conn, create_table_claims)
+    create_table(conn, create_auto_bids_table)
 else:
     print("Error! Cannot create the database connection")
 
