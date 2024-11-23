@@ -48,6 +48,7 @@ const Sell = () => {
                 biddingTime: '',
                 photo: '',
                 category: '',
+                buyNowPrice: '',
             })
             toast.success(response.data.result)
             navigate('/products')
@@ -65,6 +66,7 @@ const Sell = () => {
         description: '',
         biddingTime: '',
         category: '',
+        buyNowPrice: '',
     })
 
     const handleFileInputChange = useCallback(async (acceptedFiles) => {
@@ -179,6 +181,17 @@ const Sell = () => {
                             placeholder="Bidding window closes in..."
                             type="number"
                             value={formData.biddingTime}
+                            onChange={(e) => handleChange(e)}
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="buyNowPrice">Buy Now Price (Optional)</Label>
+                        <Input
+                            id="buyNowPrice"
+                            name="buyNowPrice"
+                            placeholder="Set a price for instant purchase"
+                            type="number"
+                            value={formData.buyNowPrice}
                             onChange={(e) => handleChange(e)}
                         />
                     </FormGroup>

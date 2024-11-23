@@ -41,7 +41,7 @@ const ProductCard = ({ product, maxBid, name }) => {
                     {product[1]}
                 </CardTitle>
                 <Badge color="info" style={{ position: 'absolute', top: '10px', right: '10px' }}>
-                    {product[8]} {/* Assuming category is at index 8 */}
+                    {product[9]} {/* Assuming category is at index 8 */}
                 </Badge>
                 <hr />
                 <CardImg
@@ -52,6 +52,11 @@ const ProductCard = ({ product, maxBid, name }) => {
                 <CardBody>
                     <CardText>Seller: {product[2]}</CardText>
                     <CardText>Minimum price: ${product[3]}</CardText>
+                    {product[4] && (
+                        <CardText>
+                            <strong>Buy Now:</strong> ${product[4]}
+                        </CardText>
+                    )}
                     <CardText>
                         Current highest bids: ${maxBid === -1 ? 'N/A' : maxBid}
                     </CardText>
