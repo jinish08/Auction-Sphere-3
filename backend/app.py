@@ -351,12 +351,13 @@ def create_bid():
         """
         c.execute(insert_query, (productId, email, amount, currentTime))
         conn.commit()
-        
+
         # Process auto-bids after manual bid
         process_auto_bids(productId)
         response["message"] = "Bid placed successfully"
 
     return jsonify(response)
+
 
 """
 API end point for new product creation.
@@ -371,11 +372,12 @@ def create_product():
     productName = request.get_json()['productName']
     sellerEmail = request.get_json()['sellerEmail']
     initialPrice = request.get_json()['initialPrice']
+    buy_now_price = request.get_json()['buyNowPrice']
     increment = request.get_json()['increment']
     photo = request.get_json()['photo']
     description = request.get_json()['description']
     biddingtime = request.get_json()['biddingTime']
-    category = request.get_json()['category']  # Add this line
+    category = request.get_json()['category']
 
     conn = create_connection(database)
     c = conn.cursor()
@@ -386,16 +388,16 @@ def create_product():
     parsed_date = datetime.strptime(formatted_date, '%Y-%m-%d %H:%M:%S')
     deadlineDate = parsed_date + timedelta(days=int(biddingtime))
 
-
-    query = "INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description, category) VALUES (?,?,?,?,?,?,?,?,?)"
+    query = "INSERT INTO product(name, seller_email, photo, initial_price, buy_now_price, date, increment, deadline_date, description, category) VALUES (?,?,?,?,?,?,?,?,?,?)"
 
     c.execute(
-        query, (str(productName), str(sellerEmail), str(photo), initialPrice,
+        query, (str(productName), str(sellerEmail), str(photo), initialPrice, buy_now_price,
                 deadlineDate, increment, deadlineDate, str(description), str(category))
     )
     conn.commit()
     response["result"] = "Added product successfully"
     return response
+
 
 """
 API end point to list all the products.
@@ -458,7 +460,7 @@ def get_product_details():
     topbids = list(c.fetchall())
 
     response = {
-        "product": result, 
+        "product": result,
         "bids": topbids,
         "analytics": {
             "unique_bidders": len(set(bid[0] + ' ' + bid[1] for bid in topbids)),
@@ -485,9 +487,10 @@ def update_product_details():
     deadlineDate = request.get_json()['deadlineDate']
     description = request.get_json()['description']
     increment = request.get_json()['increment']
+    buy_now_price = request.get_json()['buyNowPrice']
     category = request.get_json()['category']  # Add this line
 
-    query = "UPDATE product SET name='" + str(productName) + "',initial_price='" + str(initialPrice) + "',deadline_date='" + str(
+    query = "UPDATE product SET name='" + str(productName) + "',initial_price='" + str(initialPrice) + "',buy_now_price='" + str(buy_now_price) + "',deadline_date='" + str(
         deadlineDate) + "',increment='" + str(increment) + "',description='" + str(description) + "',category='" + str(category) + "' WHERE prod_id=" + str(productId) + ";"
 
     conn = create_connection(database)
@@ -496,6 +499,7 @@ def update_product_details():
     conn.commit()
     response = {"message": "Updated product successfully"}
     return response
+
 
 """
 API end point to get top ten latest products.
@@ -508,7 +512,7 @@ If there is no such bid on the product, -1 is appended to the list.
 @app.route("/getLatestProducts", methods=["GET"])
 def get_landing_page():
     response = {}
-    query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description, category FROM product ORDER BY date DESC LIMIT 10;"
+    query = "SELECT prod_id, name, seller_email, initial_price, buy_now_price , date, increment, deadline_date, description, category FROM product ORDER BY date DESC LIMIT 10;"
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
@@ -559,6 +563,48 @@ def get_top_products():
     return jsonify(response)
 
 
+@app.route("/product/buy-now", methods=["POST"])
+def buy_now():
+    productId = request.get_json()['prodId']
+    buyer_email = request.get_json()['email']
+
+    conn = create_connection(database)
+    c = conn.cursor()
+
+    # Get product details
+    query = "SELECT seller_email, buy_now_price, name FROM product WHERE prod_id=?"
+    c.execute(query, (productId,))
+    product = c.fetchone()
+
+    if not product:
+        return jsonify({"message": "Product not found"})
+
+    seller_email, buy_now_price, product_name = product
+
+    if buyer_email == seller_email:
+        return jsonify({"message": "Cannot buy your own product"})
+
+    # Record the purchase without is_buy_now column
+    currentTime = int(datetime.utcnow().timestamp())
+    purchase_query = """
+        INSERT INTO bids(prod_id, email, bid_amount, created_at) 
+        VALUES (?, ?, ?, ?)
+    """
+    c.execute(purchase_query, (productId, buyer_email,
+              buy_now_price, currentTime))
+
+    # Send confirmation emails
+    send_purchase_confirmation(
+        buyer_email, seller_email, product_name, buy_now_price)
+
+    # Remove product from active listings
+    remove_query = "DELETE FROM product WHERE prod_id=?"
+    c.execute(remove_query, (productId,))
+
+    conn.commit()
+    return jsonify({"message": "Purchase successful"})
+
+
 @app.route("/bid/auto", methods=["POST"])
 def create_auto_bid():
     productId = request.get_json()['prodId']
@@ -605,8 +651,37 @@ def create_auto_bid():
 
     conn.commit()
     process_auto_bids(productId)
-    
+
     return jsonify({"message": "Auto-bid set successfully"})
+
+
+def send_purchase_confirmation(buyer_email, seller_email, product_name, price):
+    # Send confirmation to buyer
+    buyer_subject = f"Purchase Confirmation - {product_name}"
+    buyer_body = f"""
+        Dear Buyer,
+
+        Thank you for your purchase of {product_name} for ${price}.
+        The seller will be notified and will contact you regarding the delivery details.
+
+        Best regards,
+        Auction Sphere Team
+    """
+    send_email(buyer_email, buyer_subject, buyer_body)
+
+    # Send notification to seller
+    seller_subject = f"Item Sold - {product_name}"
+    seller_body = f"""
+        Dear Seller,
+
+        Your item {product_name} has been purchased for ${price}.
+        The buyer's email is: {buyer_email}
+        Please contact the buyer to arrange delivery details.
+
+        Best regards,
+        Auction Sphere Team
+    """
+    send_email(seller_email, seller_subject, seller_body)
 
 
 def process_auto_bids(product_id):
@@ -646,7 +721,6 @@ def process_auto_bids(product_id):
 
     if auto_bids:
         highest_auto_bidder = auto_bids[0]
-        
         # If current highest bid is not from the highest auto-bidder
         if current_bidder != highest_auto_bidder[0]:
             # Calculate new bid amount
@@ -654,7 +728,6 @@ def process_auto_bids(product_id):
                 highest_auto_bidder[1],  # Max amount of auto-bidder
                 current_bid_amount + increment  # Current bid + increment
             )
-            
             # Only place bid if it's within the auto-bidder's limit
             if new_bid <= highest_auto_bidder[1] and new_bid > current_bid_amount:
                 currentTime = int(datetime.utcnow().timestamp())
@@ -662,7 +735,8 @@ def process_auto_bids(product_id):
                     INSERT OR REPLACE INTO bids(prod_id, email, bid_amount, created_at) 
                     VALUES (?, ?, ?, ?)
                 """
-                c.execute(insert_query, (product_id, highest_auto_bidder[0], new_bid, currentTime))
+                c.execute(insert_query, (product_id,
+                          highest_auto_bidder[0], new_bid, currentTime))
                 conn.commit()
 
     conn.close()
@@ -677,18 +751,26 @@ create_product_table = """CREATE TABLE IF NOT EXISTS product(
     photo TEXT,
     seller_email TEXT NOT NULL,
     initial_price REAL NOT NULL,
+    buy_now_price REAL,
     date TIMESTAMP NOT NULL,
     increment REAL,
     deadline_date TIMESTAMP NOT NULL,
     description TEXT,
     category TEXT,
-    winner_notified BOOLEAN DEFAULT FALSE,
     FOREIGN KEY(seller_email) references users(email)
 );"""
 
 
-create_bids_table = """CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TEXT NOT NULL , bid_amount REAL NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id), PRIMARY KEY(prod_id, email));"""
-
+create_bids_table = """CREATE TABLE IF NOT EXISTS bids(
+    bid_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    prod_id INTEGER NOT NULL,
+    email TEXT NOT NULL,
+    bid_amount REAL NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    is_buy_now BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY(email) references users(email),
+    FOREIGN KEY(prod_id) references product(prod_id)
+);"""
 create_table_claims = """CREATE TABLE IF NOT EXISTS claims(prod_id INTEGER, email TEXT NOT NULL, expiry_date TEXT NOT NULL, claim_status INTEGER, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id));"""
 
 create_auto_bids_table = """CREATE TABLE IF NOT EXISTS auto_bids(
