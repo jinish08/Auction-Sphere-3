@@ -9,7 +9,7 @@ test('renders  Footer', () => {
         (content, element) =>
             content.startsWith(
                 'One stop portal for auctioning and selling items'
-            ) && content.endsWith('Prathamesh Thakur.')
+            ) && content.endsWith('Nisarg Jasani.')
     )
     expect(footer_content).toBeInTheDocument()
 })
