@@ -159,7 +159,6 @@ const ProductDetails = () => {
     }, [])
 
     return (
-        <>
             <div style={{
                 background: 'linear-gradient(30deg, #020024, #090979,#94bbe9)',
                 minHeight: '100vh',
@@ -325,8 +324,6 @@ const ProductDetails = () => {
                     )}
                 </div>
             </div>
-        </div>
-        </>
     )
 }
 

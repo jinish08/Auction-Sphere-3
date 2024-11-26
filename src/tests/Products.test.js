@@ -2,6 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react'
 import Products from '../components/Products.js'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import React from 'react'
 
 // Mock dependencies
 jest.mock('axios')

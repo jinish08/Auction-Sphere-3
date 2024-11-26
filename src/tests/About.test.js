@@ -1,10 +1,7 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
-import { BrowserRouter as Router } from 'react-router-dom'
+// import '@testing-library/jest-dom/extend-expect'
 import About from '../components/About.js'
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
 
 describe('About Component', () => {
     test('renders welcome text', () => {

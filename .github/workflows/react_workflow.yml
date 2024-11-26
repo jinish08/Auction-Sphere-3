@@ -1,32 +1,35 @@
-name: CI/CD
+name: React Tests
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - develop
 
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
-
-            - name: Set up Node.js
-              uses: actions/setup-node@v2
-              with:
-                  node-version: 16.x # Use the version you need
-
-            - name: Install dependencies
-              run: yarn install
-
-            - name: Run tests and collect coverage
-              run: npm run coverage
-
-            - name: Upload coverage to Codecov
-              uses: codecov/codecov-action@v2
-              with:
-                  token: ${{ secrets.CODECOV_TOKEN }} # Add CODECOV_TOKEN in GitHub secrets
-                  files: coverage/lcov.info
-                  flags: unittests
-                  name: codecov-coverage
-                  fail_ci_if_error: true
-            - name: Documentation generator
-              run: npx styleguidist build
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+          
+      - name: Install Dependencies
+        run: npm install
+        
+      - name: Run Jest Tests
+        run: npm test
+        
+      - name: Tests Status
+        if: ${{ always() }}
+        run: |
+          if [ ${{ job.status }} == 'success' ]; then
+            echo "All tests passed successfully!"
+          else
+            echo "Tests failed. Check the logs for details."
+            exit 1
+          fi

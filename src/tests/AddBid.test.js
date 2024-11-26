@@ -1,97 +1,175 @@
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
-import { toast } from 'react-toastify'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import axios from 'axios'
-import AddBid from '../components/AddBid.js'
-import '@testing-library/jest-dom/extend-expect'
-import { URL } from '../global'
+import { toast } from 'react-toastify'
+import AddBid from '../components/AddBid'
 
+// Mock axios and react-toastify
 jest.mock('axios')
 jest.mock('react-toastify', () => ({
     toast: {
         success: jest.fn(),
-        error: jest.fn(),
-    },
+        error: jest.fn()
+    }
 }))
 
+// Mock localStorage
+const localStorageMock = {
+    getItem: jest.fn(),
+    setItem: jest.fn(),
+    clear: jest.fn()
+}
+global.localStorage = localStorageMock
+
 describe('AddBid Component', () => {
-    const mockProductId = 1
-    const mockSellerEmail = 'seller@example.com'
-    const mockBidAmount = '50'
+    const mockProps = {
+        productId: '123',
+        sellerEmail: 'seller@test.com'
+    }
 
-    beforeEach(() => {
-        localStorage.setItem('email', 'user@example.com') // Mock the logged-in user email
-    })
+    // Before all tests, set up localStorage mock
     beforeAll(() => {
-        delete window.location // Remove the original location object
-        window.location = { reload: jest.fn() } // Mock the reload method
-    })
+        Object.defineProperty(window, 'localStorage', {
+            value: {
+                getItem: jest.fn(),
+                setItem: jest.fn(),
+                clear: jest.fn()
+            },
+            writable: true
+        });
+    });
 
-    afterEach(() => {
-        localStorage.clear()
-        jest.clearAllMocks()
-    })
+    // Before each test, clear mock state
+    beforeEach(() => {
+        window.localStorage.getItem.mockClear();
+        window.localStorage.setItem.mockClear();
+        window.localStorage.clear.mockClear();
+    });
 
     test('renders AddBid component correctly', () => {
-        render(
-            <AddBid productId={mockProductId} sellerEmail={mockSellerEmail} />
-        )
+        render(<AddBid {...mockProps} />)
 
-        expect(
-            screen.getByText(`Add a bid for product ${mockProductId}`)
-        ).toBeInTheDocument()
-        expect(
-            screen.getByPlaceholderText('Enter your bid amount here')
-        ).toBeInTheDocument()
-        expect(
-            screen.getByRole('button', { name: /submit/i })
-        ).toBeInTheDocument()
+        expect(screen.getByText('Place a Bid')).toBeInTheDocument()
+        expect(screen.getByText('Enable Auto-bidding')).toBeInTheDocument()
+        expect(screen.getByPlaceholderText('Enter your bid amount')).toBeInTheDocument()
     })
 
-    test('updates amount input when user bids', () => {
-        render(
-            <AddBid productId={mockProductId} sellerEmail={mockSellerEmail} />
-        )
+    test('toggles auto-bid form fields', () => {
+        render(<AddBid {...mockProps} />)
 
-        const input = screen.getByPlaceholderText('Enter your bid amount here')
-        fireEvent.change(input, { target: { value: mockBidAmount } })
+        const toggleSwitch = screen.getByRole('checkbox')
+        expect(screen.queryByText('Maximum Bid Amount:')).not.toBeInTheDocument()
 
-        expect(input.value).toBe(mockBidAmount)
+        fireEvent.click(toggleSwitch)
+        expect(screen.getByText('Maximum Bid Amount:')).toBeInTheDocument()
+
+        fireEvent.click(toggleSwitch)
+        expect(screen.queryByText('Maximum Bid Amount:')).not.toBeInTheDocument()
     })
 
-    test('displays error toast if user tries to bid on own product', () => {
-        localStorage.setItem('email', mockSellerEmail) // Mock seller as logged-in user
-
-        render(
-            <AddBid productId={mockProductId} sellerEmail={mockSellerEmail} />
-        )
-
-        fireEvent.change(
-            screen.getByPlaceholderText('Enter your bid amount here'),
-            { target: { value: mockBidAmount } }
-        )
-        fireEvent.click(screen.getByRole('button', { name: /submit/i }))
-
-        expect(toast.error).toHaveBeenCalledWith(
-            'Cannot bid on your own product!'
-        )
+    test('handles regular bid submission', async () => {
+        // Set up localStorage mock before rendering
+        window.localStorage.getItem.mockReturnValue('buyer@test.com')
+        
+        axios.post.mockResolvedValueOnce({ data: { message: 'Bid placed successfully' } })
+        render(<AddBid {...mockProps} />)
+        
+        const bidInput = screen.getByPlaceholderText('Enter your bid amount')
+        const submitButton = screen.getByRole('button')
+        
+        fireEvent.change(bidInput, { target: { value: '100' } })
+        fireEvent.click(submitButton)
+        
+        await waitFor(() => {
+            expect(axios.post).toHaveBeenCalledWith(
+                expect.stringContaining('/bid/create'),
+                {
+                    bidAmount: '100',
+                    prodId: '123',
+                    email: 'buyer@test.com'
+                }
+            )
+            expect(toast.success).toHaveBeenCalledWith('Bid placed successfully')
+        })
     })
 
-    test('displays error toast if user tries to bid on own product', () => {
-        localStorage.setItem('email', mockSellerEmail) // Mock seller as logged-in user
+    test('handles auto-bid submission', async () => {
+        // Set up localStorage mock before the test
+        window.localStorage.getItem.mockReturnValue('buyer@test.com')
 
-        render(
-            <AddBid productId={mockProductId} sellerEmail={mockSellerEmail} />
-        )
+        axios.post.mockResolvedValueOnce({ data: { message: 'Auto-bid set successfully' } })
+        render(<AddBid {...mockProps} />)
 
-        fireEvent.change(
-            screen.getByPlaceholderText('Enter your bid amount here'),
-            { target: { value: mockBidAmount } }
-        )
-        fireEvent.click(screen.getByRole('button', { name: /submit/i }))
+        // Toggle auto-bid
+        const toggleSwitch = screen.getByRole('checkbox')
+        fireEvent.click(toggleSwitch)
 
-        expect(toast.error).toHaveBeenCalledWith(
-            'Cannot bid on your own product!'
-        )
+        // Fill in the form
+        const initialBidInput = screen.getByPlaceholderText('Enter your bid amount')
+        const maxBidInput = screen.getByPlaceholderText('Enter your maximum bid')
+        const submitButton = screen.getByText('Set Auto-bid')
+
+        fireEvent.change(initialBidInput, { target: { value: '100' } })
+        fireEvent.change(maxBidInput, { target: { value: '200' } })
+        fireEvent.click(submitButton)
+
+        await waitFor(() => {
+            expect(axios.post).toHaveBeenCalledWith(
+                expect.stringContaining('/bid/auto'),
+                {
+                    prodId: '123',
+                    email: 'buyer@test.com',
+                    initialBid: '100',
+                    maxBidAmount: '200'
+                }
+            )
+            expect(toast.success).toHaveBeenCalled()
+        })
+    })
+
+    test('prevents bidding on own product', async () => {
+        localStorage.getItem.mockReturnValueOnce('seller@test.com')
+        render(<AddBid {...mockProps} />)
+
+        const bidInput = screen.getByPlaceholderText('Enter your bid amount')
+        const submitButton = screen.getByRole('button')
+
+        fireEvent.change(bidInput, { target: { value: '100' } })
+        fireEvent.click(submitButton)
+
+        expect(toast.error).toHaveBeenCalledWith('Cannot bid on your own product!')
+    })
+
+    test('validates auto-bid maximum amount', async () => {
+        render(<AddBid {...mockProps} />)
+
+        const toggleSwitch = screen.getByRole('checkbox')
+        fireEvent.click(toggleSwitch)
+
+        const initialBidInput = screen.getByPlaceholderText('Enter your bid amount')
+        const maxBidInput = screen.getByPlaceholderText('Enter your maximum bid')
+        const submitButton = screen.getByRole('button')
+
+        fireEvent.change(initialBidInput, { target: { value: '200' } })
+        fireEvent.change(maxBidInput, { target: { value: '100' } })
+        fireEvent.click(submitButton)
+
+        expect(toast.error).toHaveBeenCalledWith('Maximum amount must be greater than initial bid amount')
+    })
+
+    test('handles bid submission error', async () => {
+        axios.post.mockRejectedValueOnce(new Error('Network error'))
+        render(<AddBid {...mockProps} />)
+
+        const bidInput = screen.getByPlaceholderText('Enter your bid amount')
+        const submitButton = screen.getByRole('button')
+
+        fireEvent.change(bidInput, { target: { value: '100' } })
+        fireEvent.click(submitButton)
+
+        await waitFor(() => {
+            expect(toast.error).toHaveBeenCalledWith('Error placing bid')
+        })
     })
 })

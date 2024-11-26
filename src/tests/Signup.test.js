@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import Signup from '../components/LoginSignup/Signup.js'
 import { BrowserRouter as Router } from 'react-router-dom'
+import React from 'react'
 const fields = [
     { field_label: 'First Name', node_name: 'firstName' },
     { field_label: 'Last Name', node_name: 'lastName' },

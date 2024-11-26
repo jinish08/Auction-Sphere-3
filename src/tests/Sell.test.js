@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import Sell from '../components/Sell'
 import { BrowserRouter as Router } from 'react-router-dom'
+import React from 'react'
 
 test('Renders sell product form', () => {
     render(

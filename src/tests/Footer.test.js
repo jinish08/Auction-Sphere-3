@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import Footer from '../components/Footer'
 import { element } from 'prop-types'
+import React from 'react'
 
 test('renders  Footer', () => {
     render(<Footer />)

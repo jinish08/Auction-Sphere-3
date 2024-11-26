@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import Navv from '../components/Navv'
+import React from 'react'
 
 const tabs = [
     { text: 'Signup', location: '/signup' },
