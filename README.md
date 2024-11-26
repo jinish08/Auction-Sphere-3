@@ -1,29 +1,29 @@
 <h1>Auction Sphere </h1>
 
-[![GitHub](https://img.shields.io/github/license/LavanyaMiddha/Auction-Sphere-2)](https://github.com/kartikson1/Auction-Sphere/blob/main/LICENSE)
+[![GitHub](https://img.shields.io/github/license/LavanyaMiddha/Auction-Sphere-2)](https://github.com/LavanyaMiddha/Auction-Sphere-2/blob/main/LICENSE)
 
-[![Build](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/code_cov.yml/badge.svg)](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/code_cov.yml) [![CI/CD](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/react_workflow.yml/badge.svg)](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/react_workflow.yml) [![Javascript Format Checker](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/code_formatter.yml/badge.svg)](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/code_formatter.yml) [![Python Style Checker](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/style_checker.yml/badge.svg)](https://github.com/LavanyaMiddha/Auction-Sphere-2/actions/workflows/style_checker.yml) [![codecov](https://codecov.io/gh/LavanyaMiddha/Auction-Sphere-2/graph/badge.svg?token=YFOKHL5ZKX)](https://codecov.io/gh/LavanyaMiddha/Auction-Sphere-2)
+[![Build](https://github.com/jinish08/Auction-Sphere-3/actions/workflows/code_cov.yml/badge.svg)](https://github.com/jinish08/Auction-Sphere-3/actions/workflows/code_cov.yml) [![CI/CD](https://github.com/jinish08/Auction-Sphere-3/actions/workflows/react_workflow.yml/badge.svg)](https://github.com/jinish08/Auction-Sphere-3/actions/workflows/react_workflow.yml) [![Javascript Format Checker](https://github.com/jinish08/Auction-Sphere-3/actions/workflows/code_formatter.yml/badge.svg)](https://github.com/jinish08/Auction-Sphere-3/actions/workflows/code_formatter.yml) [![Python Style Checker](https://github.com/jinish08/Auction-Sphere-3/actions/workflows/style_checker.yml/badge.svg)](https://github.com/jinish08/Auction-Sphere-3/actions/workflows/style_checker.yml) [![codecov](https://github.com/jinish08/Auction-Sphere-3/graph/badge.svg?token=YFOKHL5ZKX)](https://codecov.io/gh/jinish08/Auction-Sphere-3)
 
-[![GitHub contributors](https://img.shields.io/github/contributors/LavanyaMiddha/Auction-Sphere-2)](https://github.com/LavanyaMiddha/Auction-Sphere-2/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/LavanyaMiddha/Auction-Sphere-2)](https://github.com/LavanyaMiddha/Auction-Sphere-2/commits/main) [![GitHub issues](https://img.shields.io/github/issues/LavanyaMiddha/Auction-Sphere-2)](https://github.com/LavanyaMiddha/Auction-Sphere-2/issues) [![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/LavanyaMiddha/Auction-Sphere-2)](https://github.com/LavanyaMiddha/Auction-Sphere-2/issues?q=is%3Aissue+is%3Aclosed) ![GitHub forks](https://img.shields.io/github/forks/LavanyaMiddha/Auction-Sphere-2?style=social)
+[![GitHub contributors](https://img.shields.io/github/contributors/jinish08/Auction-Sphere-3)](https://github.com/jinish08/Auction-Sphere-3/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/jinish08/Auction-Sphere-3)](https://github.com/jinish08/Auction-Sphere-3/commits/main) [![GitHub issues](https://img.shields.io/github/issues/jinish08/Auction-Sphere-3)](https://github.com/jinish08/Auction-Sphere-3/issues) [![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/jinish08/Auction-Sphere-3)](https://github.com/jinish08/Auction-Sphere-3/issues?q=is%3Aissue+is%3Aclosed) ![GitHub forks](https://img.shields.io/github/forks/jinish08/Auction-Sphere-3?style=social)
 
-![GitHub language count](https://img.shields.io/github/languages/count/LavanyaMiddha/Auction-Sphere-2)
+![GitHub language count](https://img.shields.io/github/languages/count/jinish08/Auction-Sphere-3)
 
-![GitHub top language](https://img.shields.io/github/languages/top/LavanyaMiddha/Auction-Sphere-2)
+![GitHub top language](https://img.shields.io/github/languages/top/jinish08/Auction-Sphere-3)
 
 [![DOI](https://zenodo.org/badge/545100230.svg)](https://doi.org/10.5281/zenodo.14027540)
 
-Repository for CSC 510 Software Engineering project 2, created by Group : Lavanya Middha, Nayan Taori, Prathamesh Thakur
+Repository for CSC 510 Software Engineering project 3, created by Group 2: Jinish Shah, Nirmit Deliwala, Nisarg Jasani
 
 Click on the image below to view the demo video of the project
 
 <h2>Demo Video of the previous project</h2>
-https://drive.google.com/file/d/1md_n8eUBSGGTeWp78R8wSBhKQ9uqrqb5/view?usp=sharing
-
-<h2>Demo Video of the improved project</h2>
 https://drive.google.com/file/d/1-1IImCdds80cHaB8_4Agh7kr-HKMnpRh/view?usp=sharing
 
+<h2>Demo Video of the improved project</h2>
+https://drive.google.com/file/d/1FRVaFL-I48fmRp5qTOb4xqUbSj74k16J/view?usp=sharing
+
 <h2> Animated Video on Auction Sphere </h2>
-https://drive.google.com/file/d/1LEzCGPMM718vFeB9oCEM-H8NxQ2cuWQN/view?usp=sharing
+https://drive.google.com/file/d/1008xmtdrTYo-G66KVoNiSCv2WUI2d6eo/view?usp=drive_link
 
 ## About Auction-Sphere
 
@@ -77,38 +77,33 @@ To run code coverage, just do:
 This will not only give you a detailed report on your terminal, but will also generate a .html file for the reporrt as seen here in our project:
 https://github.com/kartikson1/Auction-Sphere/blob/main/coverage/lcov-report/index.html
 
-## Link to Discussion Channel:
+## Link to Discord Channel:
 
-https://github.com/LavanyaMiddha/Auction-Sphere-2/discussions
+https://discord.com/channels/1299144363351216310/1299144363351216313
 
 ## Support
 
 For Any quesries, please use our discussions channel:
-https://github.com/LavanyaMiddha/Auction-Sphere-2/discussions
+https://discord.com/channels/1299144363351216310/1299144363351216313
 
 or, reach out to any of the group members mentioned below
 
-## Group-3
+## Group-2
 
-[Lavanya Middha](https://github.com/LavanyaMiddha)
+[Jinish Shah](https://github.com/jinish08)
 
-[Nayan Taori](https://github.com/NDT2000)
+[Nirmit Deliwala](https://github.com/NRDeli)
 
-[Prathamesh Thakur](https://github.com/Prathamesh-Thakur)
+[Nisarg Jasani](https://github.com/NisargJasani0602)
 
 ## Credits:
 
 This project is an extension of the one created before by:
-Mithil Dani
 
-Neha Kale
+Lavanya Middha
 
-Rishikesh Yelne
+Nayan Taori
 
-Ritwik Vaidya
+Prathamesh Thakur
 
-Vansh Mehta
-
-Pradyumna Khawas
-
-Link to the project: https://github.com/mithildani/Auction-Sphere
+Link to the project: https://github.com/LavanyaMiddha/Auction-Sphere-2

@@ -12,8 +12,7 @@ const Footer = () => {
                     <hr />
                     <p>
                         One stop portal for auctioning and selling items.
-                        Created by Lavanya Middha, Nayan Taori, Prathamesh
-                        Thakur.
+                        Created by Jinish Shah, Nirmit Deliwala, Nisarg Jasani.
                     </p>
                 </div>
             </div>
