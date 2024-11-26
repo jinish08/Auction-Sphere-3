@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='Auction Sphere',
-    version='1.0',
+    version='3.0',
     long_description=__doc__,
     packages=find_packages(where='backend'),
     include_package_data=True,

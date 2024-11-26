@@ -226,6 +226,7 @@ def profile():
 
     if (global_email is None):
         response = {}
+        response.status_code = 401
         response['message'] = "Please login first!"
         return jsonify(response)
 

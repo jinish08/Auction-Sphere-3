@@ -5,9 +5,9 @@ name: Python application
 
 on:
     push:
-        branches: ['main']
+        branches: ['develop']
     pull_request:
-        branches: ['main']
+        branches: ['develop']
 
 permissions:
     contents: read
@@ -42,3 +42,11 @@ jobs:
               with:
                   token: ${{ secrets.CODECOV_TOKEN }}
                   slug: jinish08/Auction-Sphere-3
+            - name: Tests Status
+              if: ${{ always() }}
+              run: |
+                  if [ ${{ job.status }} == 'success' ]; then
+                      echo "All tests passed successfully!"
+                  else
+                      echo "Tests failed. Check the logs for details."
+                      exit 1
