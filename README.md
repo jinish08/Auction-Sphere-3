@@ -36,6 +36,8 @@ Auction Sphere is an auctioning system where people can bid on exciting items an
 
 On the products, people can view all the latest items being put up for sale and their respective highest bids. On the product details page, apart from product details, people can view the latest bids as well as the highest bid, and can also place a bid. It's upto the seller to decide the minimum price of the product, as well as bid increments.
 
+<img width="1728" alt="Screenshot 2024-11-26 at 23 30 35" src="https://github.com/user-attachments/assets/c30b4c45-82ad-4995-ae4b-5eddf6729bab">
+
 ## Built with
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" width="40" height="40"/> React.js
