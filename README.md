@@ -23,7 +23,7 @@ https://drive.google.com/file/d/1-1IImCdds80cHaB8_4Agh7kr-HKMnpRh/view?usp=shari
 https://drive.google.com/file/d/1FRVaFL-I48fmRp5qTOb4xqUbSj74k16J/view?usp=sharing
 
 <h2> Animated Video on Auction Sphere </h2>
-https://drive.google.com/file/d/1ZM80oNbjgJlrfiJjIMYk5d6I92ydAlo0/view?usp=sharing
+https://drive.google.com/file/d/1POGudQa4mJ_pnmdkfssnB9aRJ1BE6-3Y/view?usp=sharing
 
 ## About Auction-Sphere
 
@@ -80,6 +80,7 @@ https://github.com/kartikson1/Auction-Sphere/blob/main/coverage/lcov-report/inde
 ## Link to Discord Channel:
 
 https://discord.com/channels/1299144363351216310/1299144363351216313
+<img width="1728" alt="Screenshot 2024-11-26 at 23 30 35" src="https://github.com/user-attachments/assets/47635f0f-c0ef-4348-b0ac-1bb463982c01">
 
 ## Support
 
