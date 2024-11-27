@@ -30,7 +30,7 @@ jobs:
       - name: Run tests
         working-directory: ./backend
         run: |
-          pytest test.py -v
+          pytest --cov --cov-report=xml
 
       - name: Upload coverage reports
         uses: codecov/codecov-action@v4
