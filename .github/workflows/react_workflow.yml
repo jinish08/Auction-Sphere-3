@@ -21,8 +21,14 @@ jobs:
       - name: Install Dependencies
         run: npm install
         
-      - name: Run Jest Tests
-        run: npm test
+      - name: Run Jest Tests with Coverage
+        run: npm test -- --coverage
+        
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true
         
       - name: Tests Status
         if: ${{ always() }}
