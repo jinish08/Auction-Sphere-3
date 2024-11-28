@@ -48,7 +48,7 @@ const Products = () => {
             setFilteredProducts(apiData.products)
         } else {
             const filtered = apiData.products.filter(product => 
-                product[8] === selectedCategory // Assuming category is at index 8
+                product[9] === selectedCategory // Assuming category is at index 8
             )
             setFilteredProducts(filtered)
         }
