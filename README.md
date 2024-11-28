@@ -23,7 +23,7 @@ https://drive.google.com/file/d/1-1IImCdds80cHaB8_4Agh7kr-HKMnpRh/view?usp=shari
 https://drive.google.com/file/d/1FRVaFL-I48fmRp5qTOb4xqUbSj74k16J/view?usp=sharing
 
 <h2> Animated Video on Auction Sphere </h2>
-https://drive.google.com/file/d/1008xmtdrTYo-G66KVoNiSCv2WUI2d6eo/view?usp=drive_link
+https://drive.google.com/file/d/1POGudQa4mJ_pnmdkfssnB9aRJ1BE6-3Y/view?usp=sharing
 
 ## About Auction-Sphere
 
@@ -35,6 +35,8 @@ Congratulations, you have come to the perfect place: the **Auction Sphere**
 Auction Sphere is an auctioning system where people can bid on exciting items and also put items up for sale. Every item has a bidding window, and the item goes to the highest bidder by the end of that window.
 
 On the products, people can view all the latest items being put up for sale and their respective highest bids. On the product details page, apart from product details, people can view the latest bids as well as the highest bid, and can also place a bid. It's upto the seller to decide the minimum price of the product, as well as bid increments.
+
+<img width="1728" alt="Screenshot 2024-11-26 at 23 32 57" src="https://github.com/user-attachments/assets/69df85a7-1f79-4417-adc3-d56c5f1a29e4">
 
 ## Built with
 
@@ -80,6 +82,7 @@ https://github.com/kartikson1/Auction-Sphere/blob/main/coverage/lcov-report/inde
 ## Link to Discord Channel:
 
 https://discord.com/channels/1299144363351216310/1299144363351216313
+<img width="1728" alt="Screenshot 2024-11-26 at 23 30 35" src="https://github.com/user-attachments/assets/47635f0f-c0ef-4348-b0ac-1bb463982c01">
 
 ## Support
 
