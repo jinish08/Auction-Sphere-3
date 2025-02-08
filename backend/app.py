@@ -472,6 +472,17 @@ create_bids_table = """CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TE
 
 create_table_claims = """CREATE TABLE IF NOT EXISTS claims(prod_id INTEGER, email TEXT NOT NULL, expiry_date TEXT NOT NULL, claim_status INTEGER, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id));"""
 
+create_message_table = """CREATE TABLE IF NOT EXISTS messages(
+    message_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sender_id INTEGER NOT NULL,
+    recipient_id INTEGER NOT NULL,
+    message TEXT NOT NULL,
+    time_sent TIMESTAMP NOT NULL,
+    read BOOLEAN DEFAULT 0,
+    FOREIGN KEY (message_id) REFERENCES users (user_id)
+    FOREIGN KEY (sender_id) REFERENCES users (user_id)
+)"""
+
 """Create Connection to database"""
 conn = create_connection(database)
 if conn is not None:
@@ -479,6 +490,7 @@ if conn is not None:
     create_table(conn, create_product_table)
     create_table(conn, create_bids_table)
     create_table(conn, create_table_claims)
+    create_table(conn, create_message_table)
 else:
     print("Error! Cannot create the database connection")
 
