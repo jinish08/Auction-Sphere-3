@@ -458,7 +458,13 @@ def get_top_products():
     return jsonify(response)
 
 database = r"auction.db"
-create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
+create_users_table = """CREATE TABLE IF NOT EXISTS users( 
+    user_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    first_name TEXT NOT NULL, 
+    last_name TEXT NOT NULL, 
+    contact_number TEXT NOT NULL UNIQUE, 
+    email TEXT UNIQUE, 
+    password TEXT NOT NULL);"""
 
 create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, photo TEXT, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date TIMESTAMP NOT NULL, increment REAL, deadline_date TIMESTAMP NOT NULL, description TEXT,  FOREIGN KEY(seller_email) references users(email));"""
 
